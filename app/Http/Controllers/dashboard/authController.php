@@ -20,7 +20,7 @@ class authController extends Controller {
         }
 
         if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return $this->error('Unauthorized', ['Username Or Password Invalid'], 401);
+            return $this->error('Username Or Password Invalid', [], 401);
         }
 
         $user = Auth::user();
