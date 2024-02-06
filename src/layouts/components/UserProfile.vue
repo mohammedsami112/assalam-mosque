@@ -1,5 +1,23 @@
 <script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
+
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import Auth from '@/controllers/auth'
+import { useUserStore } from '@/stores/user'
+
+const toast = useToast()
+const router = useRouter()
+const userStore = useUserStore()
+
+const logout = () => {
+  Auth.logout().then(response => {
+    userStore.logoutSuccess()
+    toast.success(response.message)
+    router.push({name: 'login'})
+  })
+}
+
 </script>
 
 <template>
@@ -110,7 +128,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem @click='logout()'>
             <template #prepend>
               <VIcon
                 class="me-2"

@@ -6,6 +6,7 @@ export const routes = [
     children: [
       {
         path: 'dashboard',
+        name: 'dashboard',
         component: () => import('@/pages/dashboard.vue'),
       },
       {
@@ -40,6 +41,7 @@ export const routes = [
     children: [
       {
         path: 'login',
+        name: 'login',
         component: () => import('@/pages/login.vue'),
       },
       {

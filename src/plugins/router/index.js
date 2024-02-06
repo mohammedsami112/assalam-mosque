@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
   routes,
 })
 
@@ -10,7 +10,17 @@ router.beforeEach((to, from, next) => {
 
   console.log(to);
   console.log(from);
-  next();
+
+  const isLoggedIn = localStorage.getItem('token')
+  if (to.name !== 'login' && !isLoggedIn) {
+    next({name: 'login'})
+  }
+
+  if (to.name == 'login' && isLoggedIn) {
+    next({name: 'dashboard'})
+  }
+
+  return next();
 
 });
 
