@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donation', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('amount');
-            $table->string('method');
-            $table->boolean('show_name')->default(false);
-            $table->unsignedBigInteger('type');
+            $table->text('content');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donation');
+        Schema::dropIfExists('comments');
     }
 };
