@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboard\authController;
 use App\Http\Controllers\dashboard\categoriesController;
+use App\Http\Controllers\dashboard\donationsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,12 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/create', 'createCategory');
         Route::post('/update', 'updateCategory');
         Route::post('/delete', 'deleteCategories');
+    });
+
+    Route::group(['prefix' => 'donations', 'middleware' => 'auth:sanctum', 'controller' => donationsController::class], function() {
+
+        Route::get('/', 'getDonations');
+
     });
 
 });
