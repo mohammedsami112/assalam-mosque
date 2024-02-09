@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboard\authController;
 use App\Http\Controllers\dashboard\categoriesController;
+use App\Http\Controllers\dashboard\commentsController;
 use App\Http\Controllers\dashboard\donationsController;
 use App\Http\Controllers\dashboard\postsController;
 use Illuminate\Http\Request;
@@ -42,6 +43,11 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::get('/', 'getPosts');
         Route::post('/create', 'create');
         Route::post('/update', 'update');
+        Route::post('/delete', 'delete');
+    });
+
+    Route::group(['prefix' => 'comments', 'middleware' => 'auth:sanctum', 'controller' => commentsController::class], function() {
+        Route::get('/', 'getComments');
         Route::post('/delete', 'delete');
     });
 
