@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboard\categoriesController;
 use App\Http\Controllers\dashboard\commentsController;
 use App\Http\Controllers\dashboard\donationsController;
 use App\Http\Controllers\dashboard\galleryController;
+use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +60,11 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/delete', 'delete');
     });
 
+    Route::group(['prefix' => 'permissions', 'middleware' => 'auth:sanctum', 'controller' => permissionsController::class], function() {
+        Route::get('/', 'getPermissions');
+        Route::post('/create', 'create');
+        Route::post('/update', 'update');
+        Route::post('/delete', 'delete');
+    });
 
 });
