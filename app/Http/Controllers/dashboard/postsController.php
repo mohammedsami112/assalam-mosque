@@ -49,7 +49,7 @@ class postsController extends Controller {
             'title' => $request->title,
             'content' => $request->body,
             'slug' => Str::slug($request->title),
-            'thumbnail' => $thumbnail ?? null,
+            'thumbnail' => $thumbnail ? Storage::disk('public')->url($thumbnail) : null,
             'status' => $request->status,
             'category' => $request->category,
             'author' => Auth::user()->id
@@ -77,7 +77,9 @@ class postsController extends Controller {
         $post = Post::find($request->item_id);
 
         if ($request->file('thumbnail')) {
-            Storage::disk('public')->delete('thumbnails', basename($post->thumbnail));
+            if ($post->thumbnail != null) {
+                Storage::disk('public')->delete('thumbnails', basename($post->thumbnail));
+            }
             $thumbnail = Storage::disk('public')->put('thumbnails', $request->file('thumbnail'));
         }
 
@@ -85,7 +87,7 @@ class postsController extends Controller {
             'title' => $request->title,
             'content' => $request->body,
             'slug' => Str::slug($request->title),
-            'thumbnail' => $thumbnail ?? $post->thumbnail,
+            'thumbnail' => $thumbnail ? Storage::disk('public')->url($thumbnail) : $post->thumbnail,
             'status' => $request->status,
             'category' => $request->category
         ]);

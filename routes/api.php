@@ -4,6 +4,7 @@ use App\Http\Controllers\dashboard\authController;
 use App\Http\Controllers\dashboard\categoriesController;
 use App\Http\Controllers\dashboard\commentsController;
 use App\Http\Controllers\dashboard\donationsController;
+use App\Http\Controllers\dashboard\galleryController;
 use App\Http\Controllers\dashboard\postsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +51,13 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::get('/', 'getComments');
         Route::post('/delete', 'delete');
     });
+
+    Route::group(['prefix' => 'gallery', 'middleware' => 'auth:sanctum', 'controller' => galleryController::class], function() {
+        Route::get('/', 'getGallery');
+        Route::post('/create', 'addImage');
+        Route::post('/update', 'update');
+        Route::post('/delete', 'delete');
+    });
+
 
 });
