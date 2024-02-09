@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('slug');
             $table->string('thumbnail')->nullable();
             $table->boolean('status');
+            $table->unsignedBigInteger('category');
             $table->unsignedBigInteger('author');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('author')->references('id')->on('users');
+            $table->foreign('category')->references('id')->on('categories');
 
         });
     }
