@@ -7,6 +7,7 @@ use App\Http\Controllers\dashboard\donationsController;
 use App\Http\Controllers\dashboard\galleryController;
 use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
+use App\Http\Controllers\dashboard\usersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,13 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::group(['prefix' => 'auth', 'controller' => authController::class], function() {
        Route::post('login', 'login');
        Route::post('logout', 'logout')->middleware('auth:sanctum');
+    });
+
+    Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum', 'controller' => usersController::class], function() {
+        Route::get('/', 'getUsers');
+        Route::post('create', 'create');
+        Route::post('update', 'update');
+        Route::post('delete', 'delete');
     });
 
     Route::group(['prefix' => 'categories', 'middleware' => 'auth:sanctum', 'controller' => categoriesController::class], function() {
