@@ -1,6 +1,6 @@
 <script setup>
 import NavItems from '@/layouts/components/NavItems.vue'
-import logo from '@images/logo.svg?raw'
+import logo from '@images/logo.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
@@ -21,35 +21,35 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
         </IconBtn>
 
         <!-- 👉 Search -->
-        <div
-          class="d-flex align-center cursor-pointer"
-          style="user-select: none;"
-        >
-          <!-- 👉 Search Trigger button -->
-          <IconBtn>
-            <VIcon icon="ri-search-line" />
-          </IconBtn>
+<!--        <div-->
+<!--          class="d-flex align-center cursor-pointer"-->
+<!--          style="user-select: none;"-->
+<!--        >-->
+<!--          &lt;!&ndash; 👉 Search Trigger button &ndash;&gt;-->
+<!--          <IconBtn>-->
+<!--            <VIcon icon="ri-search-line" />-->
+<!--          </IconBtn>-->
 
-          <span class="d-none d-md-flex align-center text-disabled">
-            <span class="me-3">Search</span>
-            <span class="meta-key">&#8984;K</span>
-          </span>
-        </div>
+<!--          <span class="d-none d-md-flex align-center text-disabled">-->
+<!--            <span class="me-3">Search</span>-->
+<!--            <span class="meta-key">&#8984;K</span>-->
+<!--          </span>-->
+<!--        </div>-->
 
         <VSpacer />
 
-        <IconBtn
-          class="me-2"
-          href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <VIcon icon="ri-github-fill" />
-        </IconBtn>
+<!--        <IconBtn-->
+<!--          class="me-2"-->
+<!--          href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free"-->
+<!--          target="_blank"-->
+<!--          rel="noopener noreferrer"-->
+<!--        >-->
+<!--          <VIcon icon="ri-github-fill" />-->
+<!--        </IconBtn>-->
 
-        <IconBtn class="me-2">
-          <VIcon icon="ri-notification-line" />
-        </IconBtn>
+<!--        <IconBtn class="me-2">-->
+<!--          <VIcon icon="ri-notification-line" />-->
+<!--        </IconBtn>-->
 
         <NavbarThemeSwitcher class="me-2" />
 
@@ -62,13 +62,12 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
         to="/"
         class="app-logo app-title-wrapper"
       >
-        <div
-          class="d-flex"
-          v-html="logo"
-        />
+        <div class="d-flex">
+          <img :src='logo' width='50'>
+        </div>
 
         <h1 class="font-weight-medium leading-normal text-xl text-uppercase">
-          Materio
+          Assalam
         </h1>
       </RouterLink>
 

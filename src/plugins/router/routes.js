@@ -7,32 +7,33 @@ export const routes = [
       {
         path: 'dashboard',
         name: 'dashboard',
-        component: () => import('@/pages/dashboard.vue'),
+        component: () => import('@/pages/dashboard/index.vue'),
       },
       {
-        path: 'account-settings',
-        component: () => import('@/pages/account-settings.vue'),
-      },
-      {
-        path: 'typography',
-        component: () => import('@/pages/typography.vue'),
-      },
-      {
-        path: 'icons',
-        component: () => import('@/pages/icons.vue'),
-      },
-      {
-        path: 'cards',
-        component: () => import('@/pages/cards.vue'),
-      },
-      {
-        path: 'tables',
-        component: () => import('@/pages/tables.vue'),
-      },
-      {
-        path: 'form-layouts',
-        component: () => import('@/pages/form-layouts.vue'),
-      },
+        path: 'users',
+        name: 'users',
+        component: () => import('@/pages/users/index.vue'),
+        children: [
+          {
+            path: '/users',
+            name: 'view-users',
+            component: () => import('@/pages/users/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-users',
+            component: () => import('@/pages/users/create.vue')
+
+          },
+          {
+            path: 'update/:id',
+            name: 'update-users',
+            component: () => import('@/pages/users/update.vue')
+
+          }
+        ],
+      }
+
     ],
   },
   {
@@ -43,14 +44,6 @@ export const routes = [
         path: 'login',
         name: 'login',
         component: () => import('@/pages/login.vue'),
-      },
-      {
-        path: 'register',
-        component: () => import('@/pages/register.vue'),
-      },
-      {
-        path: '/:pathMatch(.*)*',
-        component: () => import('@/pages/[...error].vue'),
       },
     ],
   },
