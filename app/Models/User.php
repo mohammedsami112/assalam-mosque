@@ -31,6 +31,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'role',
     ];
 
     /**
@@ -40,10 +41,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     public function permission() {
-        return $this->hasOne(Permission::class, 'id', 'role');
+        return $this->hasOne(Permission::class, 'id', 'role')->select(['id', 'title']);
     }
 
 }
