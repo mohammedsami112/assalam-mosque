@@ -1,5 +1,5 @@
 <template>
-  <RouterView></RouterView>
+  <div class='users-page'>
+    <RouterView></RouterView>
+  </div>
 </template>
-<script setup>
-</script>
