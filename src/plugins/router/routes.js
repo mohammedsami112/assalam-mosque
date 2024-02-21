@@ -10,12 +10,12 @@ export const routes = [
         component: () => import('@/pages/dashboard/index.vue'),
       },
       {
-        path: 'users',
-        name: 'users',
+        path: '/users',
+        // name: 'users',
         component: () => import('@/pages/users/index.vue'),
         children: [
           {
-            path: '/users',
+            path: '',
             name: 'view-users',
             component: () => import('@/pages/users/view.vue')
           },
@@ -26,7 +26,7 @@ export const routes = [
 
           },
           {
-            path: 'update/:id',
+            path: 'update/:id?',
             name: 'update-users',
             component: () => import('@/pages/users/update.vue')
 

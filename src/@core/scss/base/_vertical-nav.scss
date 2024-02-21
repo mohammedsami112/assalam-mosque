@@ -134,7 +134,7 @@
     .nav-link {
       @extend %nav-link;
 
-      > .router-link-exact-active {
+      > .router-link-active {
         @extend %nav-link-active;
       }
 

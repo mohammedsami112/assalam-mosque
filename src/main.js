@@ -6,6 +6,10 @@ import { registerPlugins } from '@core/utils/plugins'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+// Sweet Alert
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 // Styles
 import '@core/scss/template/index.scss'
 import '@layouts/styles/index.scss'
@@ -31,6 +35,8 @@ app.use(Toast, {
   icon: true,
   rtl: false
 })
+
+app.use(VueSweetalert2);
 
 // Mount vue app
 app.mount('#app')
