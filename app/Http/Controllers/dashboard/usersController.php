@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +21,7 @@ class usersController extends Controller {
     }
 
     public function getUsers(Request $request) {
-        $users = User::with(['permission'])->when($request->search, function($query, $search) {
+        $users = User::with(['permission'])->where('id', '!=', Auth::user()->id)->when($request->search, function($query, $search) {
             $query->where('name', 'LIKE', "%$search%")->where('username', 'LIKE', "%$search%");
         })->when($request->permission, function($query, $permission) {
             $query->where('role', '=', $permission);
@@ -29,12 +30,18 @@ class usersController extends Controller {
         return $this->success($users);
     }
 
+    public function getUser($userId) {
+        $user = User::with(['permission'])->find($userId);
+
+        return $this->success($user);
+    }
+
     public function create(Request $request) {
 
         $validate = Validator::make($request->all(), [
             'name' => 'required',
-            'username' => 'required',
-            'password' => 'required|confirmation',
+            'username' => 'required|unique:users,username',
+            'password' => 'required|confirmed',
             'role' => 'required|exists:permissions,id',
         ]);
 
@@ -57,8 +64,8 @@ class usersController extends Controller {
         $validate = Validator::make($request->all(), [
             'item_id' => 'required',
             'name' => 'required',
-            'username' => 'required',
-            'password' => 'nullable|confirmation',
+            'username' => 'required|unique:users,username,' . $request->item_id,
+            'password' => 'nullable|confirmed',
             'role' => 'required|exists:permissions,id',
         ]);
 

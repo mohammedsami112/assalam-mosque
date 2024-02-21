@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboard\categoriesController;
 use App\Http\Controllers\dashboard\commentsController;
 use App\Http\Controllers\dashboard\donationsController;
 use App\Http\Controllers\dashboard\galleryController;
+use App\Http\Controllers\dashboard\globalController;
 use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
 use App\Http\Controllers\dashboard\usersController;
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('create', 'create');
         Route::post('update', 'update');
         Route::post('delete', 'delete');
+        Route::get('/{userId}', 'getUser');
     });
 
     Route::group(['prefix' => 'categories', 'middleware' => 'auth:sanctum', 'controller' => categoriesController::class], function() {
@@ -44,9 +46,7 @@ Route::group(['prefix' => 'dashboard'], function() {
     });
 
     Route::group(['prefix' => 'donations', 'middleware' => 'auth:sanctum', 'controller' => donationsController::class], function() {
-
         Route::get('/', 'getDonations');
-
     });
 
     Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum', 'controller' => postsController::class], function() {
@@ -73,6 +73,10 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/create', 'create');
         Route::post('/update', 'update');
         Route::post('/delete', 'delete');
+    });
+
+    Route::group(['middleware' => 'auth:sanctum', 'controller' => globalController::class], function() {
+        Route::get('/permissions-list', 'permissionsList');
     });
 
 });
