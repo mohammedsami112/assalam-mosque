@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "production": "vite build && git add . && git commit -m  \"test\" && git push ",
+    "production": "rm -r ./dist && vite build && git add . && git commit -m \" production commit \" && git push",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5050",
