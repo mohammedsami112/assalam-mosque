@@ -29,4 +29,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd api.assalam.at
-            git pull origin backend
+            git pull origin back-end
