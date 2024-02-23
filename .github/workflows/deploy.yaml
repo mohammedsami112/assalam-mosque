@@ -1,0 +1,32 @@
+name: Deploy
+
+# Trigger the workflow on push and
+# pull request events on the production branch
+on:
+  push:
+    branches:
+      - backend
+  # pull_request:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+    branches:
+      - backend
+# Authenticate to the the server via ssh
+# and run our deployment script
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 198.54.120.157
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          username: assajovz
+          port: 21098
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd api.assalam.at
+            git pull origin backend
