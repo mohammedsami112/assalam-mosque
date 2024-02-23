@@ -5,13 +5,13 @@ name: Deploy
 on:
   push:
     branches:
-      - backend
+      - back-end
   # pull_request:
   #   branches:
   #     - main
   workflow_dispatch:
     branches:
-      - backend
+      - back-end
 # Authenticate to the the server via ssh
 # and run our deployment script
 jobs:
