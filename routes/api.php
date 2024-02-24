@@ -73,6 +73,8 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/create', 'create');
         Route::post('/update', 'update');
         Route::post('/delete', 'delete');
+        Route::get('/{permissionId}', 'getPermission');
+
     });
 
     Route::group(['middleware' => 'auth:sanctum', 'controller' => globalController::class], function() {

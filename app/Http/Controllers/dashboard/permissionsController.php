@@ -24,10 +24,15 @@ class permissionsController extends Controller {
         return $this->success($permissions);
     }
 
+    public function getPermission($permissionId) {
+        $permission = Permission::find($permissionId);
+
+        return $this->success($permission);
+    }
+
     public function create(Request $request) {
         $validate = Validator::make($request->all(), [
             'title' => 'required',
-            'privilege' => 'required'
         ]);
 
         if ($validate->fails()) {

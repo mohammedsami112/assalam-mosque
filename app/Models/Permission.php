@@ -13,6 +13,11 @@ class Permission extends Model
 
     protected $fillable = ['title', 'privilege'];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function users() {
         return $this->hasMany(User::class, 'role', 'id');
     }
