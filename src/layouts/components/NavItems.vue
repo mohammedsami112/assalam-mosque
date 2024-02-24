@@ -19,6 +19,13 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
       to: '/users',
     }"
   />
+  <VerticalNavLink
+    :item="{
+      title: 'Permissions',
+      icon: 'ri-shield-line',
+      to: '/permissions',
+    }"
+  />
   <!-- 👉 Dashboards -->
 <!--  <VerticalNavGroup-->
 <!--    :item="{-->
