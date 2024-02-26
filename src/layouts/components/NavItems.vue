@@ -13,6 +13,7 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
     }"
   />
   <VerticalNavLink
+    v-if="$canAccess('users')"
     :item="{
       title: 'Users',
       icon: 'ri-user-line',
@@ -20,10 +21,19 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
     }"
   />
   <VerticalNavLink
+    v-if="$canAccess('permissions')"
     :item="{
       title: 'Permissions',
       icon: 'ri-shield-line',
       to: '/permissions',
+    }"
+  />
+  <VerticalNavLink
+    v-if="$canAccess('categories')"
+    :item="{
+      title: 'Categories',
+      icon: 'ri-file-copy-line',
+      to: '/categories'
     }"
   />
   <!-- 👉 Dashboards -->

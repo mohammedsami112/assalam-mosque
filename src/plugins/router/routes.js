@@ -12,6 +12,9 @@ export const routes = [
       {
         path: '/users',
         component: () => import('@/pages/users/index.vue'),
+        meta: {
+          canAccess: 'users'
+        },
         children: [
           {
             path: '',
@@ -35,6 +38,9 @@ export const routes = [
       {
         path: '/permissions',
         component: () => import('@/pages/permissions/index.vue'),
+        meta: {
+          canAccess: 'permissions'
+        },
         children: [
           {
             path: '',
@@ -51,6 +57,32 @@ export const routes = [
             path: 'update/:id?',
             name: 'update-permissions',
             component: () => import('@/pages/permissions/update.vue')
+
+          }
+        ],
+      },
+      {
+        path: '/categories',
+        component: () => import('@/pages/permissions/index.vue'),
+        meta: {
+          canAccess: 'categories'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-categories',
+            component: () => import('@/pages/categories/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-categories',
+            component: () => import('@/pages/categories/create.vue')
+
+          },
+          {
+            path: 'update/:id?',
+            name: 'update-categories',
+            component: () => import('@/pages/categories/update.vue')
 
           }
         ],

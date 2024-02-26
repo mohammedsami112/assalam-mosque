@@ -14,9 +14,16 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import '@core/scss/template/index.scss'
 import '@layouts/styles/index.scss'
 
+import { useUserStore } from '@/stores/user.js'
+
 // Create vue app
 const app = createApp(App)
 
+app.config.globalProperties.$canAccess = (permission) => {
+  const userStore = useUserStore()
+  return permission == null ? true : userStore.permissions == '*' ? true : userStore.permissions.filter(accessPermission => accessPermission == permission).length > 0
+}
+app.provide('$canAccess', app.config.globalProperties.$canAccess);
 
 // Register plugins
 registerPlugins(app)
