@@ -79,6 +79,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 
     Route::group(['middleware' => 'auth:sanctum', 'controller' => globalController::class], function() {
         Route::get('/permissions-list', 'permissionsList');
+        Route::get('/abilities', 'abilities');
     });
 
 });

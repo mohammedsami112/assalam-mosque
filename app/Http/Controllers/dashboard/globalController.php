@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class globalController extends Controller {
 
@@ -13,6 +14,15 @@ class globalController extends Controller {
 
         return $this->success($permissions);
 
+    }
+
+
+    public function abilities() {
+        $permission = Permission::find(Auth::user()->role)->privilege;
+
+
+
+        return $this->success(explode(',', $permission));
     }
 
 }
