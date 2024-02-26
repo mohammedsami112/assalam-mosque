@@ -17,8 +17,10 @@ class globalController extends Controller {
 
     }
 
-    public function categoriesList() {
-        $categories = Category::select(['id', 'title'])->where('parent', '=', NUll)->get();
+    public function categoriesList(Request $request) {
+        $categories = Category::select(['id', 'title'])->when($request->parent, function($query) {
+            $query->where('parent', '=', NUll);
+        })->get();
 
         return $this->success($categories);
 
