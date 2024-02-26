@@ -16,6 +16,11 @@ class Category extends Model
 
     protected $hidden = ['parent'];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function parentCategory() {
         return $this->hasOne(Category::class, 'id', 'parent');
     }

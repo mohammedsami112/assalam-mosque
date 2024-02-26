@@ -43,6 +43,7 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/create', 'createCategory');
         Route::post('/update', 'updateCategory');
         Route::post('/delete', 'deleteCategories');
+        Route::get('/{categoryId}', 'getCategory');
     });
 
     Route::group(['prefix' => 'donations', 'middleware' => 'auth:sanctum', 'controller' => donationsController::class], function() {
@@ -79,6 +80,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 
     Route::group(['middleware' => 'auth:sanctum', 'controller' => globalController::class], function() {
         Route::get('/permissions-list', 'permissionsList');
+        Route::get('/categories-list', 'categoriesList');
         Route::get('/abilities', 'abilities');
     });
 

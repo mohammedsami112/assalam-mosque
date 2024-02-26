@@ -18,12 +18,20 @@ class categoriesController extends Controller {
         });
     }
 
+
+
     public function getCategories(Request $request) {
         $categories = Category::with(['parentCategory'])->when($request->trash, function($query) {
             $query->onlyTrashed();
         })->paginate($request->limit ?? 10);
 
         return $this->success($categories);
+    }
+
+    public function getCategory($categoryId) {
+        $category = Category::find($categoryId);
+
+        return $this->success($category);
     }
 
     public function createCategory(Request $request) {
