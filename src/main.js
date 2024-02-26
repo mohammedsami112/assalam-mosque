@@ -14,7 +14,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import '@core/scss/template/index.scss'
 import '@layouts/styles/index.scss'
 
-import { useUserStore } from '@/stores/user.js'
+import { useUserStore } from '@/stores/user'
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 // Create vue app
 const app = createApp(App)
@@ -44,6 +45,7 @@ app.use(Toast, {
 })
 
 app.use(VueSweetalert2);
+app.use(CKEditor)
 
 // Mount vue app
 app.mount('#app')

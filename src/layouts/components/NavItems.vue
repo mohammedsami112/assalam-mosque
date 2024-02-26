@@ -36,6 +36,14 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
       to: '/categories'
     }"
   />
+  <VerticalNavLink
+    v-if="$canAccess('posts')"
+    :item="{
+      title: 'Posts',
+      icon: 'ri-file-copy-line',
+      to: '/posts'
+    }"
+  />
   <!-- 👉 Dashboards -->
 <!--  <VerticalNavGroup-->
 <!--    :item="{-->

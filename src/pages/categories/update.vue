@@ -68,7 +68,7 @@ onMounted(() => {
   if (!router.currentRoute.value.params.id) {
     router.push({name: 'view-categories'})
   }
-  GlobalApi.getCategoriesList().then(response => {
+  GlobalApi.getCategoriesList(true).then(response => {
     categoriesList.value = response.data
   })
   getCategory()

@@ -6,8 +6,12 @@ export default {
     return Api.get('/permissions-list').then(response => response.data);
   },
 
-  getCategoriesList() {
-    return Api.get('/categories-list').then(response => response.data);
+  getCategoriesList(parent = false) {
+    return Api.get('/categories-list', {
+      params: {
+        parent: parent
+      }
+    }).then(response => response.data);
   },
 
   getAbilities() {

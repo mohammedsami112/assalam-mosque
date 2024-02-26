@@ -47,7 +47,7 @@ const createCategory = () => {
 }
 
 onMounted(() => {
-  GlobalApi.getCategoriesList().then(response => {
+  GlobalApi.getCategoriesList(true).then(response => {
     categoriesList.value = response.data
   })
 })
