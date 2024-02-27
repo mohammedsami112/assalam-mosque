@@ -55,6 +55,8 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/create', 'create');
         Route::post('/update', 'update');
         Route::post('/delete', 'delete');
+        Route::get('/{postId}', 'getPost');
+
     });
 
     Route::group(['prefix' => 'comments', 'middleware' => 'auth:sanctum', 'controller' => commentsController::class], function() {

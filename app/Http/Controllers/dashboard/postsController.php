@@ -27,13 +27,19 @@ class postsController extends Controller {
         return $this->success($posts);
     }
 
+    public function getPost($postId) {
+        $post = Post::find($postId);
+
+        return $this->success($post);
+    }
+
     public function create(Request $request) {
 
         $validate = Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
             'thumbnail' => 'nullable|image',
-            'status' => 'required|in:true,false',
+            'status' => 'required',
             'category' => 'required:exists:categories,id',
         ]);
 
@@ -66,7 +72,7 @@ class postsController extends Controller {
             'title' => 'required',
             'body' => 'required',
             'thumbnail' => 'nullable|image',
-            'status' => 'required|in:true,false',
+            'status' => 'required',
             'category' => 'required|exists:categories,id'
         ]);
 
@@ -76,6 +82,7 @@ class postsController extends Controller {
 
         $post = Post::find($request->item_id);
 
+        $thumbnail = null;
         if ($request->file('thumbnail')) {
             if ($post->thumbnail != null) {
                 Storage::disk('public')->delete('thumbnails', basename($post->thumbnail));
