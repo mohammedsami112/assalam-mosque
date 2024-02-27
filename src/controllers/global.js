@@ -6,7 +6,7 @@ export default {
     return Api.get('/permissions-list').then(response => response.data);
   },
 
-  getCategoriesList(parent = false) {
+  getCategoriesList(parent = null) {
     return Api.get('/categories-list', {
       params: {
         parent: parent

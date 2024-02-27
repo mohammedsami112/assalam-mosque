@@ -1,15 +1,15 @@
 <script setup>
-import CategoriesApi from '@/controllers/categories'
+import PostsApi from '@/controllers/posts'
 import { useToast } from 'vue-toastification'
 import Swal from 'sweetalert2/dist/sweetalert2';
 
 
 const loading = ref(false)
-const selectedCategories = ref([])
+const selectedPosts = ref([])
 const toast = useToast()
-const getCategories = (inputs = {}) => {
+const getPosts = (inputs = {}) => {
   loading.value = true
-  CategoriesApi.getCategories(inputs).then(response => {
+  PostsApi.getPosts(inputs).then(response => {
     tableSettings.itemsPerPage = response.data.per_page
     tableSettings.totalItems = response.data.total
     tableSettings.items = response.data.data
@@ -33,14 +33,20 @@ const tableSettings = reactive({
       align: 'center'
     },
     {
-      title: 'Description',
-      key: 'description',
+      title: 'Category',
+      key: 'post_category.title',
       sortable: false,
       align: 'center'
     },
     {
-      title: 'Parent',
-      key: 'parent_category.title',
+      title: 'Author',
+      key: 'post_author.name',
+      sortable: false,
+      align: 'center'
+    },
+    {
+      title: 'Status',
+      key: 'status',
       sortable: false,
       align: 'center'
     },
@@ -68,9 +74,9 @@ const tableSettings = reactive({
   items: [],
 })
 
-const deleteCategories = (categoryId = null) => {
-  if (categoryId == null && selectedCategories.value.length == 0) {
-    toast.error('Please Select at least One Category')
+const deletePosts = (postId = null) => {
+  if (postId == null && selectedPosts.value.length == 0) {
+    toast.error('Please Select at least One Post')
     return true;
   }
   Swal.fire({
@@ -85,12 +91,12 @@ const deleteCategories = (categoryId = null) => {
       loading.value = true
 
       let deleteIds = {
-        item_ids: categoryId == null ? selectedCategories.value.join(',') : categoryId
+        item_ids: postId == null ? selectedPosts.value.join(',') : postId
       }
 
-      CategoriesApi.deleteCategories(deleteIds).then(response => {
+      PostsApi.deletePosts(deleteIds).then(response => {
         toast.success(response.message)
-        getCategories()
+        getPosts()
       })
     }
   });
@@ -105,29 +111,32 @@ const deleteCategories = (categoryId = null) => {
 
     <v-card-item>
       <v-card-title>
-        Categories
+        Posts
       </v-card-title>
     </v-card-item>
     <v-card-item>
-      <router-link :to="{name: 'create-categories'}">
-        <v-btn variant='flat' class='me-3'>Add New Category</v-btn>
+      <router-link :to="{name: 'create-posts'}">
+        <v-btn variant='flat' class='me-3'>Add New Posts</v-btn>
       </router-link>
-      <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deleteCategories()'></v-btn>
+      <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deletePosts()'></v-btn>
     </v-card-item>
     <v-card-text>
       <v-data-table-server
-        v-model='selectedCategories'
+        v-model='selectedPosts'
         item-value='id'
         v-model:items-per-page="tableSettings.itemsPerPage"
         :headers='tableSettings.headers'
         :items-length="tableSettings.totalItems"
         :items="tableSettings.items"
         :loading='loading'
-        @update:options="getCategories"
+        @update:options="getPosts"
         show-select
       >
+        <template v-slot:item.status='row'>
+          {{ row.item.status == 1 ? 'Published' : 'Draft' }}
+        </template>
         <template v-slot:item.actions="row">
-          <router-link :to="{name: 'update-categories', params: {id: row.item.id}}">
+          <router-link :to="{name: 'update-posts', params: {id: row.item.id}}">
             <v-btn
               color='default'
               variant="plain"
@@ -142,8 +151,7 @@ const deleteCategories = (categoryId = null) => {
             plain
             icon='ri-delete-bin-line'
             size="small"
-            :disabled='!row.item.deletable'
-            @click='deleteCategories(row.item.id)'
+            @click='deletePosts(row.item.id)'
           >
           </v-btn>
         </template>

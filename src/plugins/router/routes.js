@@ -86,7 +86,33 @@ export const routes = [
 
           }
         ],
-      }
+      },
+      {
+        path: '/posts',
+        component: () => import('@/pages/posts/index.vue'),
+        meta: {
+          canAccess: 'posts'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-posts',
+            component: () => import('@/pages/posts/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-posts',
+            component: () => import('@/pages/posts/create.vue')
+
+          },
+          {
+            path: 'update/:id?',
+            name: 'update-posts',
+            component: () => import('@/pages/posts/update.vue')
+
+          }
+        ],
+      },
 
     ],
   },

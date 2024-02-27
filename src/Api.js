@@ -9,7 +9,7 @@ Api.interceptors.request.use(config => {
 
   config.headers['Access-Control-Allow-Origin'] = '*'
   config.headers['X-Requested-With'] = 'XMLHttpRequest'
-  config.headers['Content-Type'] = 'application/json'
+  // config.headers['Content-Type'] = 'application/json'
 
   const AccessToken = localStorage.getItem('token')
 
@@ -19,7 +19,7 @@ Api.interceptors.request.use(config => {
 
   if (config.params != null) {
     for (const key in config.params) {
-      if (config.params[key] == "" || config.params[key] == null) {
+      if (config.params[key] == "" || config.params[key] == 'false' || config.params[key] == null) {
         config.params[key] == false ? '' : delete config.params[key];
       }
     }
