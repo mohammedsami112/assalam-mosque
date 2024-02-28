@@ -52,6 +52,26 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
       to: '/gallery'
     }"
   />
+
+  <VerticalNavGroup
+    v-if="$canAccess('donations')"
+    :item="{
+    title: 'Donations'
+  }">
+    <VerticalNavLink
+      :item="{
+      title: 'Donations List',
+      to: '/donations'
+    }"
+    />
+    <VerticalNavLink
+      :item="{
+      title: 'Donation Types',
+      to: '/donation-types'
+    }"
+    />
+  </VerticalNavGroup>
+
   <!-- 👉 Dashboards -->
 <!--  <VerticalNavGroup-->
 <!--    :item="{-->

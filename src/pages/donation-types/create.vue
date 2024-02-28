@@ -1,5 +1,5 @@
 <script setup>
-import GalleryApi from '@/controllers/gallery'
+import DonationTypesApi from '@/controllers/donationTypes'
 import { useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import { required, helpers, minLength } from '@vuelidate/validators'
@@ -9,32 +9,34 @@ const isLoading = ref(false)
 const toast = useToast()
 const router = useRouter()
 
-const handelImage = (event) => {
-  inputs.image = event.target.files[0]
+const handelThumbnail = (event) => {
+  inputs.thumbnail = event.target.files[0]
 }
 
 const inputs = reactive({
-  image: null,
+  title: null,
+  thumbnail: null,
 })
 
 const $externalResults = ref({})
 
 const rules = computed(() => ({
-  image: { required: helpers.withMessage('Image Is Required', required) },
+  title: { required: helpers.withMessage('Title Is Required', required) },
+  thumbnail: { required: helpers.withMessage('Thumbnail Is Required', required) },
 }))
 
 const validate = useVuelidate(rules, inputs, {$externalResults})
 
-const createImage = () => {
+const createDonationType = () => {
   validate.value.$clearExternalResults()
   validate.value.$touch()
   if (!validate.value.$error) {
     $externalResults.value = {}
     isLoading.value = true
 
-    GalleryApi.manageImages(inputs).then(response => {
+    DonationTypesApi.manageDonationTypes(inputs).then(response => {
       toast.success(response.message)
-      router.push({name: 'view-gallery'})
+      router.push({name: 'view-donation-types'})
     }).catch(error => {
       $externalResults.value = error.response.data.data
       toast.error(error.response.data.message)
@@ -53,24 +55,37 @@ const createImage = () => {
 
     <v-card-item>
       <v-card-title>
-        Add New Image
+        Add New Type
       </v-card-title>
     </v-card-item>
 
     <v-card-text>
-      <VForm @submit.prevent="createImage()">
+      <VForm @submit.prevent="createDonationType()">
         <VRow>
           <VCol cols="12">
+            <VTextField
+              :disabled='isLoading'
+              :error-messages='validate.title.$errors.map(e => e.$message)'
+              @input="validate.title.$touch"
+              @blur="validate.title.$touch"
+              v-model="inputs.title"
+              label="Title"
+              type="text"
+              required
+
+            />
+          </VCol>
+          <VCol cols="12">
               <VFileInput
-                :error-messages='validate.image.$errors.map(e => e.$message)'
-                @input="validate.image.$touch"
-                @blur="validate.image.$touch"
+                :error-messages='validate.thumbnail.$errors.map(e => e.$message)'
+                @input="validate.thumbnail.$touch"
+                @blur="validate.thumbnail.$touch"
                 clearable
                 :disabled='isLoading'
                 accept="image/*"
-                label="Image"
+                label="Thumbnail"
                 variant="outlined"
-                @change = "handelImage"
+                @change = "handelThumbnail"
               ></VFileInput>
           </VCol>
 
@@ -82,7 +97,7 @@ const createImage = () => {
               class='mt-4'
 
             >
-              Add Image
+              Create Donation Type
             </VBtn>
           </VCol>
 

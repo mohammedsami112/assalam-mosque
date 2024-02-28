@@ -139,6 +139,46 @@ export const routes = [
           }
         ],
       },
+      {
+        path: '/donations',
+        component: () => import('@/pages/donations/index.vue'),
+        meta: {
+          canAccess: 'donations'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-donations',
+            component: () => import('@/pages/donations/view.vue')
+          },
+        ],
+      },
+      {
+        path: '/donation-types',
+        component: () => import('@/pages/donation-types/index.vue'),
+        meta: {
+          canAccess: 'donations'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-donation-types',
+            component: () => import('@/pages/donation-types/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-donation-types',
+            component: () => import('@/pages/donation-types/create.vue')
+
+          },
+          {
+            path: 'update/:id?',
+            name: 'update-donation-types',
+            component: () => import('@/pages/donation-types/update.vue')
+
+          }
+        ],
+      },
     ],
   },
   {
