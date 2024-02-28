@@ -13,4 +13,17 @@ class Donation extends Model
 
     protected $guarded = [];
 
+    protected $hidden = ['type'];
+
+    protected $with = ['donationType'];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public function donationType() {
+        return $this->hasOne(DonationType::class, 'id', 'type')->select(['id', 'title']);
+    }
+
 }

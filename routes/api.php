@@ -4,6 +4,7 @@ use App\Http\Controllers\dashboard\authController;
 use App\Http\Controllers\dashboard\categoriesController;
 use App\Http\Controllers\dashboard\commentsController;
 use App\Http\Controllers\dashboard\donationsController;
+use App\Http\Controllers\dashboard\donationsTypesController;
 use App\Http\Controllers\dashboard\galleryController;
 use App\Http\Controllers\dashboard\globalController;
 use App\Http\Controllers\dashboard\permissionsController;
@@ -48,6 +49,14 @@ Route::group(['prefix' => 'dashboard'], function() {
 
     Route::group(['prefix' => 'donations', 'middleware' => 'auth:sanctum', 'controller' => donationsController::class], function() {
         Route::get('/', 'getDonations');
+    });
+
+    Route::group(['prefix' => 'donation-types', 'middleware' => 'auth:sanctum', 'controller' => donationsTypesController::class], function() {
+        Route::get('/', 'getTypes');
+        Route::post('/create', 'create');
+        Route::post('/update', 'update');
+        Route::post('/delete', 'delete');
+        Route::get('/{typeId}', 'getType');
     });
 
     Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum', 'controller' => postsController::class], function() {
