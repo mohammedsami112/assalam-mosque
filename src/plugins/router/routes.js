@@ -113,7 +113,32 @@ export const routes = [
           }
         ],
       },
+      {
+        path: '/gallery',
+        component: () => import('@/pages/gallery/index.vue'),
+        meta: {
+          canAccess: 'gallery'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-gallery',
+            component: () => import('@/pages/gallery/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-gallery',
+            component: () => import('@/pages/gallery/create.vue')
 
+          },
+          {
+            path: 'update/:id?',
+            name: 'update-gallery',
+            component: () => import('@/pages/gallery/update.vue')
+
+          }
+        ],
+      },
     ],
   },
   {

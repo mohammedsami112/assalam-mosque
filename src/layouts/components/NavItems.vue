@@ -44,6 +44,14 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
       to: '/posts'
     }"
   />
+  <VerticalNavLink
+    v-if="$canAccess('gallery')"
+    :item="{
+      title: 'Gallery',
+      icon: 'ri-folder-image-line',
+      to: '/gallery'
+    }"
+  />
   <!-- 👉 Dashboards -->
 <!--  <VerticalNavGroup-->
 <!--    :item="{-->
