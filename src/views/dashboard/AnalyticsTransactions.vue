@@ -1,25 +1,21 @@
 <script setup>
+const props = defineProps(['states']);
 const statistics = [
+
   {
-    title: 'Sales',
-    stats: '245k',
-    icon: 'ri-pie-chart-2-line',
-    color: 'primary',
-  },
-  {
-    title: 'Customers',
+    title: 'Users',
     stats: '12.5k',
     icon: 'ri-group-line',
     color: 'success',
   },
   {
-    title: 'Product',
+    title: 'Posts',
     stats: '1.54k',
     icon: 'ri-macbook-line',
     color: 'warning',
   },
   {
-    title: 'Revenue',
+    title: 'Donations',
     stats: '$88k',
     icon: 'ri-money-dollar-circle-line',
     color: 'info',
@@ -28,54 +24,130 @@ const statistics = [
 </script>
 
 <template>
-  <VCard title="Transactions">
-    <template #subtitle>
-      <p class="text-body-1 mb-0">
-        <span class="d-inline-block font-weight-medium text-high-emphasis">Total 48.5% Growth</span> <span class="text-high-emphasis">😎</span> this month
-      </p>
-    </template>
-
-    <template #append>
-      <IconBtn class="mt-n5">
-        <VIcon
-          color="high-emphasis"
-          icon="ri-more-2-line"
-        />
-      </IconBtn>
-    </template>
-
+  <VCard title="Statistics">
     <VCardText class="pt-10">
       <VRow>
+<!--        <VCol-->
+<!--          v-for="item in statistics"-->
+<!--          :key="item.title"-->
+<!--          cols="12"-->
+<!--          sm="6"-->
+<!--          md="4"-->
+<!--        >-->
+<!--          <div class="d-flex align-center gap-x-3">-->
+<!--            <VAvatar-->
+<!--              :color="item.color"-->
+<!--              rounded-->
+<!--              size="40"-->
+<!--              class="elevation-2"-->
+<!--            >-->
+<!--              <VIcon-->
+<!--                size="24"-->
+<!--                :icon="item.icon"-->
+<!--              />-->
+<!--            </VAvatar>-->
+
+<!--            <div class="d-flex flex-column">-->
+<!--              <div class="text-body-1">-->
+<!--                {{ item.title }}-->
+<!--              </div>-->
+<!--              <h5 class="text-h5">-->
+<!--                {{ item.stats }}-->
+<!--              </h5>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </VCol>-->
+
         <VCol
-          v-for="item in statistics"
-          :key="item.title"
           cols="12"
           sm="6"
-          md="3"
+          md="4"
+          v-if='props.states.total_users >= 0'
         >
           <div class="d-flex align-center gap-x-3">
             <VAvatar
-              :color="item.color"
+              color="success"
               rounded
               size="40"
               class="elevation-2"
             >
               <VIcon
                 size="24"
-                :icon="item.icon"
+                icon="ri-group-line"
               />
             </VAvatar>
 
             <div class="d-flex flex-column">
               <div class="text-body-1">
-                {{ item.title }}
+                Users
               </div>
               <h5 class="text-h5">
-                {{ item.stats }}
+                {{ props.states.total_users }}
               </h5>
             </div>
           </div>
         </VCol>
+
+        <VCol
+          cols="12"
+          sm="6"
+          md="4"
+          v-if='props.states.total_posts >= 0'
+        >
+          <div class="d-flex align-center gap-x-3">
+            <VAvatar
+              color="warning"
+              rounded
+              size="40"
+              class="elevation-2"
+            >
+              <VIcon
+                size="24"
+                icon="ri-macbook-line"
+              />
+            </VAvatar>
+
+            <div class="d-flex flex-column">
+              <div class="text-body-1">
+                Posts
+              </div>
+              <h5 class="text-h5">
+                {{ props.states.total_posts }}
+              </h5>
+            </div>
+          </div>
+        </VCol>
+
+        <VCol
+          cols="12"
+          sm="6"
+          md="4"
+          v-if='props.states.total_donations >= 0'
+        >
+          <div class="d-flex align-center gap-x-3">
+            <VAvatar
+              color="info"
+              rounded
+              size="40"
+              class="elevation-2"
+            >
+              <VIcon
+                size="24"
+                icon="ri-money-dollar-circle-line"
+              />
+            </VAvatar>
+
+            <div class="d-flex flex-column">
+              <div class="text-body-1">
+                Donations
+              </div>
+              <h5 class="text-h5">
+                {{ props.states.total_donations }}
+              </h5>
+            </div>
+          </div>
+        </VCol>
+
       </VRow>
     </VCardText>
   </VCard>

@@ -8,23 +8,51 @@ import avatar6 from '@images/avatars/avatar-6.png'
 import avatar7 from '@images/avatars/avatar-7.png'
 import avatar8 from '@images/avatars/avatar-8.png'
 
+const props = defineProps(['donationList'])
 const headers = [
   {
-    title: 'User',
-    key: 'username',
+    title: '#',
+    key: 'id',
+    sortable: false,
+    align: 'center'
+  },
+  {
+    title: 'Name',
+    key: 'name',
+    sortable: false,
+    align: 'center'
+  },
+  {
+    title: 'Amount',
+    key: 'amount',
+    sortable: false,
+    align: 'center'
   },
   {
     title: 'Email',
     key: 'email',
+    sortable: false,
+    align: 'center'
   },
   {
-    title: 'Role',
-    key: 'role',
+    title: 'Method',
+    key: 'method',
+    sortable: false,
+    align: 'center'
   },
   {
-    title: 'Status',
-    key: 'status',
+    title: 'type',
+    key: 'donation_type.title',
+    sortable: false,
+    align: 'center'
   },
+  {
+    title: 'Created At',
+    key: 'created_at',
+    sortable: false,
+    align: 'center'
+  },
+
 ]
 
 const userData = [
@@ -185,60 +213,10 @@ const resolveUserStatusVariant = stat => {
   <VCard>
     <VDataTable
       :headers="headers"
-      :items="userData"
+      :items="props.donationList"
       item-value="id"
       class="text-no-wrap"
     >
-      <!-- User -->
-      <template #item.username="{ item }">
-        <div class="d-flex align-center gap-x-4">
-          <VAvatar
-            size="34"
-            :variant="!item.avatar ? 'tonal' : undefined"
-            :color="!item.avatar ? resolveUserRoleVariant(item.role).color : undefined"
-          >
-            <VImg
-              v-if="item.avatar"
-              :src="item.avatar"
-            />
-          </VAvatar>
-
-          <div class="d-flex flex-column">
-            <h6 class="text-h6 font-weight-medium user-list-name">
-              {{ item.fullName }}
-            </h6>
-
-            <span class="text-sm text-medium-emphasis">@{{ item.username }}</span>
-          </div>
-        </div>
-      </template>
-      <!-- Role -->
-      <template #item.role="{ item }">
-        <div class="d-flex gap-4">
-          <VIcon
-            :icon="resolveUserRoleVariant(item.role).icon"
-            :color="resolveUserRoleVariant(item.role).color"
-            size="22"
-          />
-          <div class="text-capitalize text-high-emphasis">
-            {{ item.role }}
-          </div>
-        </div>
-      </template>
-      <!-- Plan -->
-      <template #item.plan="{ item }">
-        <span class="text-capitalize text-high-emphasis">{{ item.currentPlan }}</span>
-      </template>
-      <!-- Status -->
-      <template #item.status="{ item }">
-        <VChip
-          :color="resolveUserStatusVariant(item.status)"
-          size="small"
-          class="text-capitalize"
-        >
-          {{ item.status }}
-        </VChip>
-      </template>
 
       <template #bottom />
     </VDataTable>

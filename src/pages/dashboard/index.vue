@@ -1,4 +1,5 @@
 <script setup>
+import GlobalApi from '@/controllers/global'
 import AnalyticsAward from '@/views/dashboard/AnalyticsAward.vue'
 import AnalyticsBarCharts from '@/views/dashboard/AnalyticsBarCharts.vue'
 import AnalyticsDepositWithdraw from '@/views/dashboard/AnalyticsDepositWithdraw.vue'
@@ -27,89 +28,24 @@ const newProject = {
   change: -18,
   subtitle: 'Yearly Project',
 }
+
+const states = ref({});
+
+onMounted(() => {
+  GlobalApi.getDashboard().then(response => {
+    states.value = response.data
+  })
+})
 </script>
 
 <template>
   <VRow class="match-height">
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsAward />
+    <VCol cols="12" v-if='states.total_users >= 0 || states.total_posts >= 0 || states.total_donations >= 0'>
+      <AnalyticsTransactions :states='states' />
     </VCol>
 
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsTransactions />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsWeeklyOverview />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsTotalEarning />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <VRow class="match-height">
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <AnalyticsTotalProfitLineCharts />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <CardStatisticsVertical v-bind="totalProfit" />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <CardStatisticsVertical v-bind="newProject" />
-        </VCol>
-
-        <VCol
-          cols="12"
-          sm="6"
-        >
-          <AnalyticsBarCharts />
-        </VCol>
-      </VRow>
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsSalesByCountries />
-    </VCol>
-
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsDepositWithdraw />
-    </VCol>
-
-    <VCol cols="12">
-      <AnalyticsUserTable />
+    <VCol cols="12" v-if='states.latest_donations'>
+      <AnalyticsUserTable :donation-list='states.latest_donations' />
     </VCol>
   </VRow>
 </template>

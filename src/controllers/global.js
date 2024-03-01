@@ -2,6 +2,10 @@ import Api from '@/Api'
 
 export default {
 
+  getDashboard() {
+    return Api.get('/home').then(response => response.data)
+  },
+
   getPermissionsList() {
     return Api.get('/permissions-list').then(response => response.data);
   },
