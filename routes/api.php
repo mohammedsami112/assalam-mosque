@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\globalController;
 use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
 use App\Http\Controllers\dashboard\usersController;
+use App\Http\Controllers\globalController as websiteGlobalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// Dashboard Routes
 
 Route::group(['prefix' => 'dashboard'], function() {
 
@@ -95,5 +98,12 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::get('/categories-list', 'categoriesList');
         Route::get('/abilities', 'abilities');
     });
+
+});
+
+// Website Routes
+Route::group(['controller' => websiteGlobalController::class], function() {
+
+    Route::get('home', 'home');
 
 });
