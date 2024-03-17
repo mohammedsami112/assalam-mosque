@@ -1,0 +1,87 @@
+@import '_vars';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Header
+header {
+  .right {
+    .top {
+      .left {
+        .volunteers {
+          .text-box {
+            p {
+              @apply transition-all ease-in-out duration-500;
+            }
+          }
+          &:hover {
+            .text-box {
+              p {
+                &:hover {
+                  color: $primary!important;
+                }
+              }
+            }
+          }
+          .icon {
+            &::before {
+              content: '';
+              background: url("../main-menu__volunteers-icon-shape.png");
+              @apply absolute bottom-0 left-[1px] w-[15px] h-[5px] bg-no-repeat rotate-[220deg];
+            }
+          }
+        }
+
+      }
+      .right {
+        .info {
+          ul {
+            li {
+              a {
+                @apply transition-all ease-in-out duration-500;
+                &:hover {
+                  color: $primary!important;
+                }
+              }
+              &:not(:last-child) {
+                &::before {
+                  content: '';
+                  @apply absolute top-[3px] bottom-[3px] right-[-40px] bg-[#eee9db] w-[1px];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .bottom {
+      .menu {
+        ul {
+          > li + li {
+            @apply ml-[55px];
+          }
+          li {
+            a {
+              &.router-link-active {
+                @apply text-white;
+              }
+            }
+          }
+        }
+      }
+      .content-box {
+        .btn-content-box {
+          .btn-box {
+            a {
+              //&::before {
+              //  content: '';
+              //  background: $primary2;
+              //  @apply absolute top-0 bottom-0 left-0 right-[-10000000000000px] z-[-1];
+              //}
+            }
+          }
+        }
+      }
+    }
+  }
+}
