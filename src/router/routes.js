@@ -5,6 +5,7 @@ export const routes = [
     children: [
       {
         path: '/home',
+        alias: '/',
         name: 'home-page',
         component: () => import('@/pages/home/index.vue')
       }

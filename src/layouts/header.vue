@@ -43,8 +43,8 @@
 </script>
 
 <template>
-  <header class="block relative">
-    <v-container>
+  <header class="block">
+    <v-container class="pb-0">
       <div class="flex items-center justify-between">
         <div class="left relative block w-[9%] mr-[100px]">
           <div class="logo">

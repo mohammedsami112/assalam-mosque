@@ -3,8 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Tajawal", sans-serif;
+  padding-top: 165px;
+}
+
+
 // Header
 header {
+  @apply fixed w-full top-0 z-10 bg-white;
   .right {
     .top {
       .left {
@@ -84,4 +91,33 @@ header {
       }
     }
   }
+}
+
+// Slider
+.main-slider {
+  height: 100vh;
+  .swiper {
+    @apply h-full;
+    .slider-item {
+      @apply h-full relative;
+      .slider-background {
+        @apply h-full bg-no-repeat bg-cover absolute w-full z-[1] #{!important};
+        &::before {
+          content: '';
+          @apply w-full h-full absolute bg-[#283734d9];
+        }
+      }
+      .slider-content {
+        @apply relative z-[2] w-full h-full flex flex-col items-center justify-center;
+        p {
+          color: $primary2;
+          @apply mb-5;
+        }
+        h2 {
+          @apply text-white text-5xl mb-14 text-center;
+        }
+      }
+    }
+  }
+
 }
