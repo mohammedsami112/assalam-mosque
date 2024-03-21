@@ -149,3 +149,17 @@ header {
     }
   }
 }
+
+// Features Section
+.features-section {
+  .feature-card {
+    .btn-box {
+    a {
+      &:hover {
+        color: #333!important;
+        background: $primary2!important;
+      }
+    }
+  }
+  }
+}
