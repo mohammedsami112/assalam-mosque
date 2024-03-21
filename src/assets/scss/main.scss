@@ -8,6 +8,11 @@ body {
   padding-top: 165px;
 }
 
+section.section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
 
 // Header
 header {
@@ -33,7 +38,7 @@ header {
           .icon {
             &::before {
               content: '';
-              background: url("../main-menu__volunteers-icon-shape.png");
+              background: url("../images/main-menu__volunteers-icon-shape.png");
               @apply absolute bottom-0 left-[1px] w-[15px] h-[5px] bg-no-repeat rotate-[220deg];
             }
           }

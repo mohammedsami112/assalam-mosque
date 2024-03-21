@@ -1,6 +1,6 @@
 <script setup>
   import { watch, reactive, ref } from 'vue'
-  import AppLogo from '@/assets/logo.png'
+  import AppLogo from '@/assets/images/logo.png'
   import HeaderTopMenu from '@/components/header/topMenu.vue'
   import HeaderBottomMenu from '@/components/header/bottomMenu.vue'
   import { useAppStore } from "@/store/app";

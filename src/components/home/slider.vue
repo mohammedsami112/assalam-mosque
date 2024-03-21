@@ -4,9 +4,9 @@
   import { Autoplay } from 'swiper/modules'
   import 'swiper/css';
 
-  import SliderImage1 from '@/assets/slider/1.jpeg'
-  import SliderImage2 from '@/assets/slider/2.jpeg'
-  import SliderImage3 from '@/assets/slider/3.jpeg'
+  import SliderImage1 from '@/assets/images/slider/1.jpeg'
+  import SliderImage2 from '@/assets/images/slider/2.jpeg'
+  import SliderImage3 from '@/assets/images/slider/3.jpeg'
 
   const sliderData = ref([
     {
