@@ -126,3 +126,26 @@ header {
   }
 
 }
+
+// Donations Section
+.donations-section {
+  .background {
+    background: url('../images/donations/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+
+    &::before {
+      content: '';
+      @apply w-full h-full absolute bg-[#283734eb];
+    }
+  }
+  .donation-card {
+    .card-content {
+      .title {
+        @apply transition-all ease-in-out duration-500;
+        &:hover {
+          color: $primary2!important;
+        }
+      }
+    }
+  }
+}
