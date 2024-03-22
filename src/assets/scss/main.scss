@@ -163,3 +163,27 @@ header {
   }
   }
 }
+
+// Gallery Section
+.gallery-section {
+  .gallery-card {
+    .gallery-image {
+      &::before {
+        content: '';
+        background: linear-gradient(180deg, rgba(250, 211, 91, 0.0928746) 53%, #fad35b 100%);
+        @apply absolute top-0 bottom-0 left-0 right-0 rounded-[20px] transition-all duration-700 ease-in-out translate-y-[100%];
+      }
+
+    }
+    &:hover {
+      .gallery-image {
+        &::before {
+          @apply translate-y-[0%];
+        }
+        .content {
+          @apply opacity-[1] translate-y-[0%];
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@
   import HomeDonationsSection from '@/components/home/donations'
   import HomeFeaturesSection from '@/components/home/features'
   import HomeNewsSection from '@/components/home/news'
+  import HomeGallerySection from '@/components/home/gallery'
 </script>
 
 <template>
@@ -14,6 +15,7 @@
   <HomeDonationsSection />
   <HomeFeaturesSection />
   <HomeNewsSection />
+  <HomeGallerySection />
 </template>
 
 <style scoped>
