@@ -5,11 +5,12 @@
 </script>
 
 <template>
-  <div class="bottom flex items-center justify-between">
+  <div class="bottom hidden xl:flex items-center justify-between">
     <div class="menu block bg-primary pl-[50px] rounded-tl-[15px] rounded-tr-[15px] w-full">
       <ul class="flex">
         <li class="pt-[17px] pb-[17px] relative" v-for="(item, index) in props.menuItems" :key="index">
-          <router-link to="/" class="font-[400] text-[16px] flex items-center relative transition-all ease-in-out duration-500 text-gray-300 hover:text-white">{{ item.title }}</router-link>
+          <router-link :to="{path: item.route.path, hash: item.route.hash}" v-if="item.hash == true" class="font-[400] text-[16px] flex items-center relative transition-all ease-in-out duration-500 text-gray-300 hover:text-white">{{ item.title }}</router-link>
+          <router-link :to="{name: item.route}" v-else class="font-[400] text-[16px] flex items-center relative transition-all ease-in-out duration-500 text-gray-300 hover:text-white">{{ item.title }}</router-link>
         </li>
 
       </ul>

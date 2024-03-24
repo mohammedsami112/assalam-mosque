@@ -3,28 +3,51 @@
   import AppLogo from '@/assets/images/logo.png'
   import HeaderTopMenu from '@/components/header/topMenu.vue'
   import HeaderBottomMenu from '@/components/header/bottomMenu.vue'
+  import MobileMenu from '@/components/header/mobileMenu'
   import { useAppStore } from "@/store/app";
 
   const AppStore = useAppStore()
 
   const menuItems = ref([
     {
-      title: 'الرئيسية'
+      title: 'الرئيسية',
+      route: 'home-page',
+      hash: false
+
     },
     {
-      title: 'المركز التعليمي'
+      title: 'المركز التعليمي',
+      route: {
+        path: '/',
+        hash: '#about'
+      },
+      hash: true
     },
     {
-      title: 'التبرعات'
+      title: 'التبرعات',
+      route: {
+        path: '/',
+        hash: '#donations'
+      },
+      hash: true
     },
     {
-      title: 'احدث الفعاليات'
+      title: 'احدث الفعاليات',
+      route: {
+        path: '/',
+        hash: '#news'
+      },
+      hash: true
     },
     {
-      title: 'من نحن'
+      title: 'من نحن',
+      route: 'home-page',
+      hash: false
     },
     {
-      title: 'تواصل معنا'
+      title: 'تواصل معنا',
+      route: 'home-page',
+      hash: false
     },
   ])
   const mainSettings = reactive({
@@ -46,16 +69,17 @@
   <header class="block">
     <v-container class="pb-0">
       <div class="flex items-center justify-between">
-        <div class="left relative block w-[9%] mr-[100px]">
+        <div class="left relative block max-w-[75px] xl:max-w-auto xl:w-[9%] xl:mr-[100px]">
           <div class="logo">
             <router-link :to="{name: 'home-page'}">
-              <img :src="AppLogo" alt="">
+              <img class="w-full" :src="AppLogo" alt="">
             </router-link>
           </div>
         </div>
-        <div class="right block w-[91%]">
+        <div class="right xl:w-[91%] block">
           <HeaderTopMenu :mainSettings="mainSettings"></HeaderTopMenu>
           <HeaderBottomMenu :menuItems="menuItems"></HeaderBottomMenu>
+          <MobileMenu :menuItems="menuItems" :mainSettings="mainSettings"></MobileMenu>
         </div>
       </div>
     </v-container>

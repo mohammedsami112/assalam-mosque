@@ -24,8 +24,8 @@
   <section class="section features-section relative block">
     <v-container>
       <v-row>
-        <v-col cols="12" lg="4" v-for="(item, index) in data" :key="index">
-          <div class="feature-card relative block min-h-[447px] z-[2]">
+        <v-col class="flex justify-center xl:block" cols="12" lg="4" v-for="(item, index) in data" :key="index">
+          <div class="feature-card relative block w-[320px] xl:w-auto min-h-[447px] z-[2]">
             <div class="background absolute top-0 left-[-29px] right-[-28px] bottom-0 bg-cover z-[2] " :style="{background: 'url('+item.image+') no-repeat center center'}"></div>
             <div class="title-box absolute bottom-[110px] left-[90px] z-[2] rotate-[-16deg]">
               <h3 class="text-[35px] font-[900] leading-[60px] text-transparent" style="-webkit-text-stroke: 2px #fff">{{ item.title }}</h3>

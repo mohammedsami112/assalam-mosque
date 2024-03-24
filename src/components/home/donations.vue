@@ -5,19 +5,19 @@
 </script>
 
 <template>
-  <section class="section donations-section relative !pt-[270px] !pb-[90]">
+  <section class="section donations-section relative !pt-[270px] !pb-[90]" id="donations">
     <div class="background absolute top-0 left-0 right-0 h-[645px] bg-primary-dark z-[0]"></div>
     <v-container class="relative z-[1]">
       <div class="title text-center">
-        <span class="text-primary2 block text-[24px] font-[700] leading-[24px] mb-[20px]">ســـاعد وتبـــــــرع</span>
-        <h2 class="text-white block text-[50px] leading-[60px] font-[900] mt-[6px] mb-[40px]">
+        <span class="text-primary2 block text-[15px] xl:text-[24px] font-[700] leading-[24px] mb-[20px]">ســـاعد وتبـــــــرع</span>
+        <h2 class="text-white block text-[26px] xl:text-[50px] leading-[60px] font-[900] mt-[6px] mb-[40px]">
           قال النبي صلى الله عليه وسلم
           <br>
           مَنْ بَنَى مَسْجِدًا بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ
         </h2>
       </div>
       <v-row>
-        <v-col cols="12" lg="3" md="6" v-for="item in AppStore.home.donation_types" :key="item.id">
+        <v-col cols="12" lg="3" md="6" sm="6" v-for="item in AppStore.home.donation_types" :key="item.id">
           <div class="donation-card relative block">
             <div class="card-thumbnail relative block rounded-tl-[20px] rounded-tr-[20px] overflow-hidden z-[1]">
               <img class="w-full" width="370" height="250" :src="item.thumbnail" alt="">

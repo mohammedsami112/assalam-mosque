@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <section class="section news-section relative">
+  <section class="section news-section relative" id="news">
     <v-container>
       <div class="section-title text-center relative block mb-[46px]">
         <span class="block text-[20px] text-primary font-[700] leading-[24px] mb-[10px]">أخر الأنشطة</span>
@@ -16,7 +16,7 @@
         <v-col cols="12" lg="4" v-for="item in AppStore.home.latest_posts">
           <div class="news-card relative block">
             <div class="thumbnail relative block overflow-hidden rounded-tl-[20px] rounded-tr-[20px] z-[1]">
-              <img width="370" height="250" class="w-full" :src="item.thumbnail" alt="">
+              <img width="370" height="250" class="w-full transition-all duration-500 ease-in-out" :src="item.thumbnail" alt="">
             </div>
             <div class="content relative block border-[1px] border-t-0 border-[#eee9db] rounded-bl-[20px] rounded-br-[20px] bg-white transition-all duration-500 ease-in-out">
 

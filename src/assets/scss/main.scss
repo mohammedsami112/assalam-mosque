@@ -5,7 +5,7 @@
 
 body {
   font-family: "Tajawal", sans-serif;
-  padding-top: 165px;
+  @apply pt-[88px] xl:pt-[165px];
 }
 
 section.section {
@@ -16,6 +16,7 @@ section.section {
 
 // Header
 header {
+  box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.05);
   @apply fixed w-full top-0 z-10 bg-white;
   .right {
     .top {
@@ -72,13 +73,13 @@ header {
           > li + li {
             @apply ml-[55px];
           }
-          li {
-            a {
-              &.router-link-active {
-                @apply text-white;
-              }
-            }
-          }
+          //li {
+          //  a {
+          //    &.router-link-active {
+          //      color: $primary2;
+          //    }
+          //  }
+          //}
         }
       }
       .content-box {
@@ -119,7 +120,7 @@ header {
           @apply mb-5;
         }
         h2 {
-          @apply text-white text-5xl mb-14 text-center;
+          @apply text-white leading-[33px] text-[21px] xl:text-5xl mb-14 text-center;
         }
       }
     }
@@ -140,6 +141,7 @@ header {
   }
   .donation-card {
     .card-content {
+      box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
       .title {
         @apply transition-all ease-in-out duration-500;
         &:hover {
@@ -161,6 +163,22 @@ header {
       }
     }
   }
+  }
+}
+
+// News Section
+.news-section  {
+  .news-card {
+    &:hover {
+      .thumbnail {
+        img {
+          @apply scale-[1.05];
+        }
+      }
+      .content {
+        box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 }
 

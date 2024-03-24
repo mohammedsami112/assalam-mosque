@@ -8,7 +8,12 @@ export const routes = [
         alias: '/',
         name: 'home-page',
         component: () => import('@/pages/home/index.vue')
-      }
+      },
+      {
+        path: '/donation/:type?',
+        name: 'donation-page',
+        component: () => import('@/pages/home/index.vue')
+      },
     ]
   }
 ];

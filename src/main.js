@@ -4,10 +4,10 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
-import "@/assets/scss/main.scss"
 
 // Plugins
 import { registerPlugins } from '@/plugins'
+import "@/assets/scss/main.scss"
 
 // Components
 import App from './App.vue'

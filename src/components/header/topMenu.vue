@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="top flex items-center justify-between pt-[18px] pb-[18px]">
+  <div class="top hidden xl:flex items-center justify-between pt-[18px] pb-[18px]">
     <div class="left block">
       <div class="volunteers flex items-center">
         <div class="icon relative w-[44px] h-[44px] bg-primary2 rounded-[50%] flex items-center justify-center">
