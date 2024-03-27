@@ -17,7 +17,7 @@ Api.interceptors.request.use((config) => {
     }
   }
 
-  if (config.data != null && Array.form(config.data).filter(([key, value]) => value == '' || value == null || value == 'null').length > 0 ) {
+  if (config.data != null && Array.from(config.data).filter(([key, value]) => value == '' || value == null || value == 'null').length > 0 ) {
     Array.from(config.data).filter(([key, value]) => {
       value == '' || value == null || value == 'null' ? config.data.delete(key) : ''
     })

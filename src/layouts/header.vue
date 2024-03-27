@@ -69,7 +69,7 @@
   <header class="block">
     <v-container class="pb-0">
       <div class="flex items-center justify-between">
-        <div class="left relative block max-w-[75px] xl:max-w-auto xl:w-[9%] xl:mr-[100px]">
+        <div class="left relative block max-w-[75px] xl:max-w-full xl:w-[9%] xl:mr-[100px]">
           <div class="logo">
             <router-link :to="{name: 'home-page'}">
               <img class="w-full" :src="AppLogo" alt="">

@@ -7,7 +7,8 @@
 <template>
   <div class="top hidden xl:flex items-center justify-between pt-[18px] pb-[18px]">
     <div class="left block">
-      <div class="volunteers flex items-center">
+      <router-link :to="{name: 'donation-page'}">
+        <div class="volunteers flex items-center">
         <div class="icon relative w-[44px] h-[44px] bg-primary2 rounded-[50%] flex items-center justify-center">
           <span class="mdi mdi-heart text-primary text-[24px]"></span>
         </div>
@@ -18,6 +19,7 @@
           </p>
         </div>
       </div>
+      </router-link>
     </div>
     <div class="right flex items-center">
       <div class="info">

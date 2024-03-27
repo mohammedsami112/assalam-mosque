@@ -12,7 +12,7 @@ export const routes = [
       {
         path: '/donation/:type?',
         name: 'donation-page',
-        component: () => import('@/pages/home/index.vue')
+        component: () => import('@/pages/donations/index.vue')
       },
     ]
   }

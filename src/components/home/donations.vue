@@ -18,7 +18,8 @@
       </div>
       <v-row>
         <v-col cols="12" lg="3" md="6" sm="6" v-for="item in AppStore.home.donation_types" :key="item.id">
-          <div class="donation-card relative block">
+          <router-link :to="{name: 'donation-page', params: {type: item.id}}">
+            <div class="donation-card relative block">
             <div class="card-thumbnail relative block rounded-tl-[20px] rounded-tr-[20px] overflow-hidden z-[1]">
               <img class="w-full" width="370" height="250" :src="item.thumbnail" alt="">
             </div>
@@ -28,6 +29,7 @@
               </h3>
             </div>
           </div>
+          </router-link>
         </v-col>
       </v-row>
     </v-container>

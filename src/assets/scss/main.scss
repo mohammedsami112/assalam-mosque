@@ -13,7 +13,6 @@ section.section {
   padding-bottom: 60px;
 }
 
-
 // Header
 header {
   box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.05);
@@ -201,6 +200,52 @@ header {
         .content {
           @apply opacity-[1] translate-y-[0%];
         }
+      }
+    }
+  }
+}
+
+// Pages Header
+.page-header {
+  background: url('../images/donations/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  @apply relative h-[290px] w-full flex items-center justify-center mb-20;
+  &::before {
+    content: '';
+    @apply w-full h-full absolute bg-[#283734eb] z-[1];
+  }
+  .content {
+    @apply z-[2];
+    h1 {
+      @apply text-white text-[30px];
+    }
+  }
+}
+
+// Latest Donations
+.latest-donations {
+  .content {
+    .col {
+      &:nth-child(even) {
+        background-color: $primary2;
+      }
+    }
+  }
+}
+
+// Donate Section
+.donate-box {
+  .tabs {
+    .tab {
+      &:hover, &.active {
+        background: $primary2;
+      }
+    }
+  }
+  .box {
+    .donate-box {
+      .v-text-field .v-field, .v-text-field .v-input__details {
+        direction: rtl;
       }
     }
   }

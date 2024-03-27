@@ -29,7 +29,7 @@
           <div class="footer-widget mb-10">
             <img :src="AppLogo" class="mb-4">
             <p class="mb-10 text-[14px]">قال النبي صلى الله عليه وسلم : ( مَنْ بَنَى مَسْجِدًا بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ ) رواه البخاري</p>
-            <v-btn size="x-large" prepend-icon="mdi mdi-heart" flat color="primary2">تبرع الان</v-btn>
+            <v-btn size="x-large" prepend-icon="mdi mdi-heart" flat color="primary2" :to="{name: 'donation-page'}">تبرع الان</v-btn>
           </div>
         </v-col>
         <v-col cols="12" lg="6">
