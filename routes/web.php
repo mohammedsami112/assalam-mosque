@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\donationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/validate-payment', [donationsController::class, 'validateStripePayment']);
+Route::get('/validate-paypal', [donationsController::class, 'validatePaypalPayment']);
