@@ -9,12 +9,12 @@
 import { registerPlugins } from '@/plugins'
 import "@/assets/scss/main.scss"
 
+
 // Components
 import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
-import {useAppStore} from "@/store/app";
 
 const app = createApp(App)
 

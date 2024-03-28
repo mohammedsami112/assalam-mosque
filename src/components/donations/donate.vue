@@ -69,75 +69,73 @@
 
 
   onMounted(() => {
-    payload.type = router.currentRoute.value.params.type == "" ? null : parseInt(router.currentRoute.value.params.type)
+    payload.type = !router.currentRoute.value.params.type || router.currentRoute.value.params.type == "" ? null : parseInt(router.currentRoute.value.params.type)
   })
 
 </script>
 
 <template>
   <div class="donate-box mb-10">
-    <v-container>
-      <div class="tabs mb-5">
-        <v-row>
-          <v-col cols="12" lg="6">
-            <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'paypal'}" @click="changeTabs('paypal')">
-              <img class="w-[150px]" :src="PayPalLogo" alt="">
-            </div>
+    <div class="tabs mb-5">
+      <v-row>
+        <v-col cols="12" lg="6">
+          <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'paypal'}" @click="changeTabs('paypal')">
+            <img class="w-[150px]" :src="PayPalLogo" alt="">
+          </div>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'visa-mastercard'}" @click="changeTabs('visa-mastercard')">
+            <img class="w-[200px]" :src="VisaMastercardLogo" alt="">
+          </div>
+        </v-col>
+      </v-row>
+    </div>
+    <div class="box bg-[#f7f7f7] rounded-[9px] p-[20px]">
+      <div class="donate-box" v-if="payload.method == 'paypal'">
+        <v-row style="direction: rtl">
+          <v-col cols="12">
+            <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
           </v-col>
-          <v-col cols="12" lg="6">
-            <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'visa-mastercard'}" @click="changeTabs('visa-mastercard')">
-              <img class="w-[200px]" :src="VisaMastercardLogo" alt="">
-            </div>
+          <v-col cols="12">
+            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
+          </v-col>
+          <v-col cols="12" lg="4" class="flex justify-center items-center">
+            <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
+          </v-col>
+          <v-col cols="12">
+            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر بايبال </v-btn>
           </v-col>
         </v-row>
       </div>
-      <div class="box bg-[#f7f7f7] rounded-[9px] p-[20px]">
-        <div class="donate-box" v-if="payload.method == 'paypal'">
-          <v-row style="direction: rtl">
-            <v-col cols="12">
-              <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
-            </v-col>
-            <v-col cols="12" lg="4">
-              <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12" lg="4">
-              <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12" lg="4" class="flex justify-center items-center">
-              <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
-            </v-col>
-            <v-col cols="12">
-              <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر بايبال </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-        <div class="donate-box" v-if="payload.method == 'visa-mastercard'">
-          <v-row style="direction: rtl">
-            <v-col cols="12">
-              <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
-            </v-col>
-            <v-col cols="12" lg="4">
-              <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12" lg="4">
-              <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
-            </v-col>
-            <v-col cols="12" lg="4" class="flex justify-center items-center">
-              <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
-            </v-col>
-            <v-col cols="12">
-              <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر البطاقة البنكية</v-btn>
-            </v-col>
-          </v-row>
-        </div>
+      <div class="donate-box" v-if="payload.method == 'visa-mastercard'">
+        <v-row style="direction: rtl">
+          <v-col cols="12">
+            <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
+          </v-col>
+          <v-col cols="12" lg="4">
+            <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
+          </v-col>
+          <v-col cols="12" lg="4" class="flex justify-center items-center">
+            <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
+          </v-col>
+          <v-col cols="12">
+            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر البطاقة البنكية</v-btn>
+          </v-col>
+        </v-row>
       </div>
-    </v-container>
+    </div>
   </div>
 </template>
 

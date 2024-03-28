@@ -4,8 +4,11 @@
 @tailwind utilities;
 
 body {
-  font-family: "Tajawal", sans-serif;
+  font-family: "Tajawal", sans-serif!important;
   @apply pt-[88px] xl:pt-[165px];
+}
+.Vue-Toastification__toast-body {
+  font-family: "Tajawal", sans-serif!important;
 }
 
 section.section {
@@ -237,7 +240,7 @@ header {
 .donate-box {
   .tabs {
     .tab {
-      &:hover, &.active {
+      &.active {
         background: $primary2;
       }
     }
