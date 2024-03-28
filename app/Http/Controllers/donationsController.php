@@ -120,21 +120,24 @@ class donationsController extends Controller {
 
     public function validateStripePayment(Request $request) {
 
-        if (!$request->session_id || $request->session_id == "") {
-            return redirect(env('STRIPE_FAIL_LINK'));
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $response = $stripe->checkout->sessions->retrieve($request->session_id);
+
+        $paymentStatus = $response['payment_status'] == 'paid' ? 'success' : 'fail';
+
+
+        if (isset($request->session_id) || $paymentStatus == 'success') {
+
+            $donation = Donation::withoutGlobalScope(DonationsScope::class)->where('session_id', '=', $request->session_id)->first();
+
+            $donation->update([
+                'status' => 1
+            ]);
+
         }
 
-        $donation = Donation::withoutGlobalScope(DonationsScope::class)->where('session_id', '=', $request->session_id)->first();
+        return redirect(env('PAYMENT_RETURN_URL') . '?payment_status=' . $paymentStatus);
 
-        if ($donation == null) {
-            return redirect(env('STRIPE_FAIL_LINK'));
-        }
-
-        $donation->update([
-            'status' => 1
-        ]);
-
-        return redirect(env('STRIPE_SUCCESS_LINK'));
 
     }
 
@@ -144,22 +147,19 @@ class donationsController extends Controller {
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
+        $paymentStatus = $response['status'] == 'COMPLETED' ? 'success' : 'fail';
 
 
-        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+        if (isset($request->token) || $paymentStatus == 'success') {
 
             $donation = Donation::withoutGlobalScope(DonationsScope::class)->where('session_id', '=', $request->token)->first();
-
-            if ($donation == null) {
-                return redirect(env('PAYPAL_FAIL_LINK'));
-            }
 
             $donation->update([
                 'status' => 1
             ]);
 
-            return redirect(env('PAYPAL_SUCCESS_LINK'));
         }
+        return redirect(env('PAYMENT_RETURN_URL') . '?payment_status=' . $paymentStatus);
 
     }
 
