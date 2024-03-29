@@ -39,16 +39,11 @@
       },
       hash: true
     },
-    {
-      title: 'من نحن',
-      route: 'home-page',
-      hash: false
-    },
-    {
-      title: 'تواصل معنا',
-      route: 'home-page',
-      hash: false
-    },
+    // {
+    //   title: 'من نحن',
+    //   route: 'home-page',
+    //   hash: false
+    // },
   ])
   const mainSettings = reactive({
     phone: null,

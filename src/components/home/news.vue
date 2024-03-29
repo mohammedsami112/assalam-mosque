@@ -29,15 +29,15 @@
                     </li>
                   </ul>
                   <h3 class="mt-[3px]">
-                    <a href="#" class="text-primary-dark text-[26px] font-[900] leading-[31px]">{{ item.title }}</a>
+                    <router-link :to="{name: 'posts-page', params: {id: item.id, slug: item.slug}}" class="text-primary-dark text-[26px] font-[900] leading-[31px]">{{ item.title }}</router-link>
                   </h3>
                 </div>
                 <div class="bottom relative flex items-center justify-between border-t-[1px] border-t-solid border-t-[#eee9db] pt-[19px] pb-[19px] pr-[27px] pl-[27px]">
                   <div class="read-more relative">
-                    <a href="#" class="text-[14px] font-[700] text-primary-dark">
+                    <router-link :to="{name: 'posts-page', params: {id: item.id, slug: item.slug}}" class="text-[14px] font-[700] text-primary-dark">
                       <span class="mdi mdi-arrow-right-thin text-[16px] pr-[6px] relative top-[2px]"></span>
                       اقرأ المزيد
-                    </a>
+                    </router-link>
                   </div>
                 </div>
               </div>

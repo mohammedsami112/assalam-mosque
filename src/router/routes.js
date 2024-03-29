@@ -14,6 +14,16 @@ export const routes = [
         name: 'donation-page',
         component: () => import('@/pages/donations/index.vue')
       },
+      {
+        path: '/page/:id/:slug',
+        name: 'pages-page',
+        component: () => import('@/pages/page/index.vue')
+      },
+      {
+        path: '/post/:id/:slug',
+        name: 'posts-page',
+        component: () => import('@/pages/posts/index.vue')
+      },
     ]
   }
 ];

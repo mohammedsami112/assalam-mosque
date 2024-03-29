@@ -25,16 +25,16 @@
   <footer class="border-t-[3px] border-t-solid border-t-[#333] pt-[60px]">
     <v-container>
       <v-row>
-        <v-col cols="12" lg="6">
+        <v-col cols="12" lg="4" md="6">
           <div class="footer-widget mb-10">
             <img :src="AppLogo" class="mb-4">
             <p class="mb-10 text-[14px]">قال النبي صلى الله عليه وسلم : ( مَنْ بَنَى مَسْجِدًا بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ ) رواه البخاري</p>
             <v-btn size="x-large" prepend-icon="mdi mdi-heart" flat color="primary2" :to="{name: 'donation-page'}">تبرع الان</v-btn>
           </div>
         </v-col>
-        <v-col cols="12" lg="6">
+        <v-col cols="12" lg="4" md="6">
           <div class="footer-widget">
-            <h3 class="text-primary-dark text-[20px] font-[800] leading-[20px] mb-[10px]">Contact</h3>
+            <h3 class="text-primary-dark text-[20px] font-[800] leading-[20px] mb-[10px]">تواصل معنا</h3>
             <ul>
               <li class="mb-5">
                 <p>
@@ -50,6 +50,16 @@
               <li class="flex items-center">
                 <span class="mdi mdi-phone-in-talk block pr-[14px] text-[20px] text-primary2"></span>
                 <a class="text-primary-dark" :href="'tel:' + mainSettings.phone">{{ mainSettings.phone }}</a>
+              </li>
+            </ul>
+          </div>
+        </v-col>
+        <v-col cols="12" lg="4" md="6">
+          <div class="footer-widget">
+            <h3 class="text-primary-dark text-[20px] font-[800] leading-[20px] mb-[10px]">روابط</h3>
+            <ul style="list-style: circle;">
+              <li class="mb-5" v-for="item in AppStore.home.pages">
+                <router-link :to="{name: 'pages-page', params: {id: item.id, slug: item.slug}}">{{ item.title }}</router-link>
               </li>
             </ul>
           </div>
