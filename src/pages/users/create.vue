@@ -45,7 +45,6 @@ const createUser = () => {
     isLoading.value = true
 
     UsersApi.manageUsers(inputs).then(response => {
-      console.log(response)
       toast.success(response.message)
       router.push({name: 'view-users'})
     }).catch(error => {

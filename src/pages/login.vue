@@ -38,7 +38,6 @@ const login = () => {
     $externalResults.value = {}
     isLoading.value = true
     Auth.login(inputs).then(response => {
-      console.log(response)
       userStore.loginSuccess(response.data)
       toast.success(response.message)
       router.push({name: 'dashboard'})

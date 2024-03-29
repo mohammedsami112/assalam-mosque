@@ -8,7 +8,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
 
-  console.log(to)
   const isLoggedIn = localStorage.getItem('token')
   if (to.name !== 'login' && !isLoggedIn) {
     next({name: 'login'})

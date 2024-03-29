@@ -33,7 +33,6 @@ const createPermission = () => {
     isLoading.value = true
 
     PermissionsApi.managePermissions(inputs).then(response => {
-      console.log(response)
       toast.success(response.message)
       router.push({name: 'view-permissions'})
     }).catch(error => {

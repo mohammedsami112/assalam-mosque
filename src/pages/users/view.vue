@@ -8,7 +8,6 @@ const loading = ref(false)
 const selectedUsers = ref([])
 const toast = useToast()
 const getUsers = (inputs = {}) => {
-  console.log(inputs)
   loading.value = true
   UsersApi.getUsers(inputs).then(response => {
     tableSettings.itemsPerPage = response.data.per_page
