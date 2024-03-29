@@ -16,7 +16,7 @@ class PagesSeeder extends Seeder
     {
         Page::create([
             'title' => 'من نحن',
-            'slug' => Str::slug('من نحن'),
+            'slug' => str_replace(' ', '-', 'من نحن'),
             'content' => 'test'
         ]);
     }

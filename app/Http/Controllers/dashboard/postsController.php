@@ -54,7 +54,7 @@ class postsController extends Controller {
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->body,
-            'slug' => Str::slug($request->title),
+            'slug' => str_replace(' ', '-', $request->title),
             'thumbnail' => $thumbnail ? Storage::disk('public')->url($thumbnail) : null,
             'status' => $request->status,
             'category' => $request->category,
@@ -93,7 +93,7 @@ class postsController extends Controller {
         $post->update([
             'title' => $request->title,
             'content' => $request->body,
-            'slug' => Str::slug($request->title),
+            'slug' => str_replace(' ', '-', $request->title),
             'thumbnail' => $thumbnail ? Storage::disk('public')->url($thumbnail) : $post->thumbnail,
             'status' => $request->status,
             'category' => $request->category

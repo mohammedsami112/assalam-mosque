@@ -13,6 +13,8 @@ use App\Http\Controllers\dashboard\postsController;
 use App\Http\Controllers\dashboard\usersController;
 use App\Http\Controllers\globalController as websiteGlobalController;
 use App\Http\Controllers\donationsController as websiteDonationsController;
+use App\Http\Controllers\pagesController as websitePagesController;
+use App\Http\Controllers\postsController as websitePostsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -115,6 +117,12 @@ Route::group(['prefix' => 'donations', 'controller' => websiteDonationsControlle
     Route::get('/', 'getDonations');
     Route::get('/types', 'getDonationsTypes');
     Route::post('/create', 'makeDonation');
+});
+Route::group(['prefix' => 'pages', 'controller' => websitePagesController::class], function() {
+    Route::get('/{pageId}', 'getPage');
+});
+Route::group(['prefix' => 'posts', 'controller' => websitePostsController::class], function() {
+    Route::get('/{postId}', 'getPost');
 });
 Route::group(['controller' => websiteGlobalController::class], function() {
 

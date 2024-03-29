@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\DonationType;
 use App\Models\Gallary;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class globalController extends Controller {
     }
 
     private function getLatestPosts() {
-        $latestPosts = Post::select(['id', 'title', 'slug', 'thumbnail', 'author', 'created_at'])->without(['postCategory'])->orderBy('id', 'desc')->take(3)->get();
+        $latestPosts = Post::select(['id', 'title', 'slug', 'thumbnail', 'author', 'created_at'])->where('status', '=', 1)->without(['postCategory'])->orderBy('id', 'desc')->take(3)->get();
 
         return $latestPosts;
     }
@@ -45,6 +46,12 @@ class globalController extends Controller {
         return $gallery;
     }
 
+    private function getPages() {
+        $pages = Page::select(['id', 'title', 'slug'])->get();
+
+        return $pages;
+    }
+
     public function home() {
 
         $data = [
@@ -52,7 +59,8 @@ class globalController extends Controller {
 //            'categories' => $this->getCategories(),
             'donation_types' => $this->getDonationTypes(),
             'latest_posts' => $this->getLatestPosts(),
-            'gallery' => $this->getGallery()
+            'gallery' => $this->getGallery(),
+            'pages' => $this->getPages()
         ];
 
 
