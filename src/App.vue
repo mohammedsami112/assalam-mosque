@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted } from 'vue'
+  import { onMounted, ref } from 'vue'
   import GlobalApi from '@/controllers/global'
   import { useAppStore } from '@/store/app'
 

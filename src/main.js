@@ -9,6 +9,8 @@
 import { registerPlugins } from '@/plugins'
 import "@/assets/scss/main.scss"
 
+import mitt from 'mitt'
+const emitter = mitt()
 
 // Components
 import App from './App.vue'
@@ -20,5 +22,6 @@ const app = createApp(App)
 
 
 registerPlugins(app)
+app.provide('emitter', emitter)
 
 app.mount('#app')
