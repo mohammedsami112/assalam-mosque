@@ -114,6 +114,32 @@ export const routes = [
         ],
       },
       {
+        path: '/pages',
+        component: () => import('@/pages/pages/index.vue'),
+        meta: {
+          canAccess: 'pages'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-pages',
+            component: () => import('@/pages/pages/view.vue')
+          },
+          {
+            path: 'create',
+            name: 'create-pages',
+            component: () => import('@/pages/pages/create.vue')
+
+          },
+          {
+            path: 'update/:id?',
+            name: 'update-pages',
+            component: () => import('@/pages/pages/update.vue')
+
+          }
+        ],
+      },
+      {
         path: '/gallery',
         component: () => import('@/pages/gallery/index.vue'),
         meta: {

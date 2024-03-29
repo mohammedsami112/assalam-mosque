@@ -45,6 +45,14 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
     }"
   />
   <VerticalNavLink
+    v-if="$canAccess('pages')"
+    :item="{
+      title: 'Pages',
+      icon: 'ri-file-copy-line',
+      to: '/pages'
+    }"
+  />
+  <VerticalNavLink
     v-if="$canAccess('gallery')"
     :item="{
       title: 'Gallery',
