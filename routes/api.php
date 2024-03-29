@@ -7,6 +7,7 @@ use App\Http\Controllers\dashboard\donationsController;
 use App\Http\Controllers\dashboard\donationsTypesController;
 use App\Http\Controllers\dashboard\galleryController;
 use App\Http\Controllers\dashboard\globalController;
+use App\Http\Controllers\dashboard\pagesController;
 use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
 use App\Http\Controllers\dashboard\usersController;
@@ -69,7 +70,14 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/update', 'update');
         Route::post('/delete', 'delete');
         Route::get('/{postId}', 'getPost');
+    });
 
+    Route::group(['prefix' => 'pages', 'middleware' => 'auth:sanctum', 'controller' => pagesController::class], function() {
+        Route::get('/', 'getPages');
+//        Route::post('/create', 'create');
+        Route::post('/update', 'update');
+//        Route::post('/delete', 'delete');
+        Route::get('/{pageId}', 'getPage');
     });
 
     Route::group(['prefix' => 'comments', 'middleware' => 'auth:sanctum', 'controller' => commentsController::class], function() {
