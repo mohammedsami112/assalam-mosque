@@ -23,10 +23,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 198.54.120.157
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          username: assajovz
-          port: 21098
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: root
+          port: 22
+          password: JMUqwdbRT/9
           script: |
-            cd api.assalam.at
+            cd /var/www/api
             git pull origin back-end
