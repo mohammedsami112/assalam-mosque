@@ -39,11 +39,12 @@
       },
       hash: true
     },
-    // {
-    //   title: 'من نحن',
-    //   route: 'home-page',
-    //   hash: false
-    // },
+
+    {
+      title: 'اوقات الصلاه',
+      route: 'prayer-page',
+      hash: false
+    },
   ])
   const mainSettings = reactive({
     phone: null,

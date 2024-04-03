@@ -24,6 +24,11 @@ export const routes = [
         name: 'posts-page',
         component: () => import('@/pages/posts/index.vue')
       },
+      {
+        path: '/prayer-time',
+        name: 'prayer-page',
+        component: () => import('@/pages/prayer-time/index.vue')
+      },
     ]
   }
 ];
