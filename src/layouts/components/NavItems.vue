@@ -79,6 +79,14 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
     }"
     />
   </VerticalNavGroup>
+  <VerticalNavLink
+    v-if="$canAccess('settings')"
+    :item="{
+      title: 'Settings',
+      icon: 'ri-settings-3-line',
+      to: '/settings'
+    }"
+  />
 
   <!-- 👉 Dashboards -->
 <!--  <VerticalNavGroup-->

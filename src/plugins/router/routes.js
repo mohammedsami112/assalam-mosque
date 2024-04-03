@@ -205,6 +205,20 @@ export const routes = [
           }
         ],
       },
+      {
+        path: '/settings',
+        component: () => import('@/pages/settings/index.vue'),
+        meta: {
+          canAccess: 'settings'
+        },
+        children: [
+          {
+            path: '',
+            name: 'view-settings',
+            component: () => import('@/pages/settings/view.vue')
+          },
+        ],
+      },
     ],
   },
   {
