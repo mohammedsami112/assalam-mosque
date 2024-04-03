@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Models\DonationType;
 use App\Models\Scopes\DonationsScope;
+use App\Traits\PaypalPayment;
+use App\Traits\StripePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Stripe\StripeClient;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class donationsController extends Controller {
+
+    use StripePayment, PaypalPayment;
+
+    public function __construct() {
+
+        $this->setupStripeConfig();
+        $this->setupPaypalConfig();
+
+    }
 
     public function getDonations() {
         $donations = Donation::without('donationType')->select(['id', 'name', 'amount', 'show_name'])->orderBy('created_at', 'desc')->take(10)->get();
@@ -44,26 +53,8 @@ class donationsController extends Controller {
         $type = DonationType::find($request->type);
 
         if ($request->method == 'visa-mastercard') {
-            $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
 
-            $paymentLink = $stripe->checkout->sessions->create([
-                'success_url' => env('STRIPE_VALIDATION_LINK') . '?session_id={CHECKOUT_SESSION_ID}',
-                'payment_method_types' => ['link', 'card'],
-                'line_items' => [
-                    [
-                        'price_data' => [
-                            'product_data' => [
-                                'name' => $type->title
-                            ],
-                            'unit_amount' => 100 * $request->amount,
-                            'currency' => 'EUR'
-                        ],
-                        'quantity' => 1
-                    ]
-                ],
-                'mode' => 'payment',
-                'allow_promotion_codes' => false
-            ]);
+            $stripeLink = $this->makeStripePayment($request->amount, $type->title);
 
             Donation::create([
                 'name' => $request->name,
@@ -72,31 +63,15 @@ class donationsController extends Controller {
                 'method' => 'Card',
                 'show_name' => $request->show_name,
                 'type' => $request->type,
-                'session_id' => $paymentLink['id'],
+                'session_id' => $stripeLink['id'],
             ]);
 
-            return $paymentLink['url'];
+            return $stripeLink['url'];
         }
 
         if ($request->method == 'paypal') {
-            $paypal = new PayPalClient;
-            $paypal->setApiCredentials(config('paypal'));
-            $paypalToken = $paypal->getAccessToken();
 
-            $paypalLink = $paypal->createOrder([
-                "intent" => "CAPTURE",
-                "application_context" => [
-                    "return_url" => env('PAYPAL_VALIDATION_LINK'),
-                ],
-                "purchase_units" => [
-                    0 => [
-                        "amount" => [
-                            "currency_code" => "EUR",
-                            "value" => $request->amount
-                        ]
-                    ]
-                ]
-            ]);
+            $paypalLink = $this->makePaypalPayment($request->amount);
 
             Donation::create([
                 'name' => $request->name,
@@ -120,8 +95,7 @@ class donationsController extends Controller {
 
     public function validateStripePayment(Request $request) {
 
-        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
-        $response = $stripe->checkout->sessions->retrieve($request->session_id);
+        $response = $this->validateStripePayments($request->session_id);
 
         $paymentStatus = $response['payment_status'] == 'paid' ? 'success' : 'fail';
 
@@ -143,10 +117,7 @@ class donationsController extends Controller {
 
     public function validatePaypalPayment(Request $request) {
 
-        $provider = new PayPalClient;
-        $provider->setApiCredentials(config('paypal'));
-        $provider->getAccessToken();
-        $response = $provider->capturePaymentOrder($request['token']);
+        $response = $this->validatePaypalPayments($request['token']);
         $paymentStatus = $response['status'] == 'COMPLETED' ? 'success' : 'fail';
 
 

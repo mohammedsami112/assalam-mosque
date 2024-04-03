@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\globalController;
 use App\Http\Controllers\dashboard\pagesController;
 use App\Http\Controllers\dashboard\permissionsController;
 use App\Http\Controllers\dashboard\postsController;
+use App\Http\Controllers\dashboard\settingsController;
 use App\Http\Controllers\dashboard\usersController;
 use App\Http\Controllers\globalController as websiteGlobalController;
 use App\Http\Controllers\donationsController as websiteDonationsController;
@@ -100,7 +101,11 @@ Route::group(['prefix' => 'dashboard'], function() {
         Route::post('/update', 'update');
         Route::post('/delete', 'delete');
         Route::get('/{permissionId}', 'getPermission');
+    });
 
+    Route::group(['prefix' => 'settings', 'middleware' => 'auth:sanctum', 'controller' => settingsController::class], function() {
+        Route::get('/', 'getSettings');
+        Route::post('/update', 'updateSettings');
     });
 
     Route::group(['middleware' => 'auth:sanctum', 'controller' => globalController::class], function() {

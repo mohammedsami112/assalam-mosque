@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Traits\Settings;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use Settings;
     /**
      * Register any application services.
      */
@@ -21,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
     }
 }
