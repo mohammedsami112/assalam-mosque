@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class authController extends Controller {
@@ -30,6 +32,32 @@ class authController extends Controller {
         ];
 
         return $this->success($success, 'Login Successfully');
+
+    }
+
+    public function changePassword(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed'
+        ]);
+
+        if ($validate->fails()) {
+            return $this->error('Validation Error', $validate->errors());
+        }
+
+        $auth = Auth::user();
+
+        if (!Hash::check($request->current_password, $auth->password)) {
+            return $this->error('Current Password Invalid');
+        }
+
+        $user = User::find($auth->id);
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return $this->success(null, 'Password Changed Successfully');
+
 
     }
 

@@ -36,6 +36,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 
     Route::group(['prefix' => 'auth', 'controller' => authController::class], function() {
        Route::post('login', 'login');
+       Route::post('change-password', 'changePassword')->middleware('auth:sanctum');
        Route::post('logout', 'logout')->middleware('auth:sanctum');
     });
 
