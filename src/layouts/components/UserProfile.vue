@@ -1,6 +1,6 @@
 <script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
-
+import ChangePassword from '@/components/changePassword.vue'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import Auth from '@/controllers/auth'
@@ -69,6 +69,7 @@ const logout = () => {
               {{ userStore.userData.username }}
             </VListItemTitle>
           </VListItem>
+          <ChangePassword></ChangePassword>
           <VDivider class="my-2" />
 
 
