@@ -12,4 +12,12 @@ class postsController extends Controller
 
         return $this->success($post);
     }
+
+    public function getPosts(Request $request) {
+        $posts = Post::where('category', '=', $request->categoryId ?? 1)->take(3)->get();
+
+        return $this->success($posts);
+
+    }
+
 }

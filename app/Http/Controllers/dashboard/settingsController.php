@@ -26,10 +26,6 @@ class settingsController extends Controller
 
     public function updateSettings(Request $request) {
         $validate = Validator::make($request->all(), [
-            'phone_number' => 'required',
-            'email' => 'required',
-            'address1' => 'required',
-            'address2' => 'required',
             'stripe_secret_key' => 'required',
             'stripe_publish_key' => 'required',
             'paypal_mode' => 'required',

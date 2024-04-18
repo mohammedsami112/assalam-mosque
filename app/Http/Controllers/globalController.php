@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class globalController extends Controller {
 
     private function getSettings() {
-        $settings = Setting::whereIn('name', ['phone_number', 'email', 'address1', 'address2'])->get();
+        $settings = Setting::whereIn('name', ['phone_number', 'google_map', 'facebook', 'youtube', 'instagram'])->get();
 
         return $settings;
     }
@@ -26,7 +26,7 @@ class globalController extends Controller {
     }
 
     private function getDonationTypes() {
-        $donationTypes = DonationType::select(['id', 'title', 'thumbnail'])->orderBy('id', 'desc')->take(4)->get();
+        $donationTypes = DonationType::select(['id', 'title', 'thumbnail'])->orderBy('id', 'desc')->get();
         $donationTypes->each(function($type) {
             $type->setAppends([]);
         });
@@ -58,7 +58,7 @@ class globalController extends Controller {
             'settings' => $this->getSettings(),
 //            'categories' => $this->getCategories(),
             'donation_types' => $this->getDonationTypes(),
-            'latest_posts' => $this->getLatestPosts(),
+//            'latest_posts' => $this->getLatestPosts(),
             'gallery' => $this->getGallery(),
             'pages' => $this->getPages()
         ];

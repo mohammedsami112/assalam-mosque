@@ -14,9 +14,12 @@ class CategoriesSeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            'title' => 'آخر الأنشطة',
-            'description' => 'أحدث الفعاليات في الملتقي',
-            'deletable' => true,
+            'title' => 'فعليات الجمعية',
+            'deletable' => false,
+        ]);
+        Category::create([
+            'title' => 'اخبار الجمعية',
+            'deletable' => false,
         ]);
     }
 }

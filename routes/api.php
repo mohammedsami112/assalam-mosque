@@ -128,6 +128,7 @@ Route::group(['prefix' => 'pages', 'controller' => websitePagesController::class
     Route::get('/{pageId}', 'getPage');
 });
 Route::group(['prefix' => 'posts', 'controller' => websitePostsController::class], function() {
+    Route::get('/', 'getPosts');
     Route::get('/{postId}', 'getPost');
 });
 Route::group(['controller' => websiteGlobalController::class], function() {

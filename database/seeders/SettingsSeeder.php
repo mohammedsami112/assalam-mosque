@@ -22,12 +22,20 @@ class SettingsSeeder extends Seeder
             'value' => 'info@assalam.at'
         ]);
         Setting::create([
-            'name' => 'address1',
-            'value' => 'Mariazellerstraße 31 EG, 3100'
+            'name' => 'google_map',
+            'value' => '#'
         ]);
         Setting::create([
-            'name' => 'address2',
-            'value' => 'St. Pölten , Austria'
+            'name' => 'facebook',
+            'value' => '#'
+        ]);
+        Setting::create([
+            'name' => 'youtube',
+            'value' => '#'
+        ]);
+        Setting::create([
+            'name' => 'instagram',
+            'value' => '#'
         ]);
         Setting::create([
             'name' => 'stripe_secret_key',
