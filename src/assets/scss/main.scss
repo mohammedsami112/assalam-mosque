@@ -212,7 +212,7 @@ header {
 .page-header {
   background: url('../images/donations/bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  @apply relative h-[290px] w-full flex items-center justify-center mb-20;
+  @apply relative h-[150px] w-full flex items-center justify-center mb-20;
   &::before {
     content: '';
     @apply w-full h-full absolute bg-[#283734eb] z-[1];

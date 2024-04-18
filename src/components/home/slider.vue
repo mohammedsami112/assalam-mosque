@@ -51,9 +51,11 @@
             <div class="slider-content">
               <p>{{ item.subTitle }}</p>
               <h2>{{ item.title }}</h2>
-              <v-btn variant="tonal" flat color="primary2">
-                اكتشف المزيد
-              </v-btn>
+              <router-link :to="{ path: '/', hash: '#features' }">
+                <v-btn variant="tonal" flat color="primary2">
+                  اكتشف المزيد
+                </v-btn>
+              </router-link>
             </div>
           </v-container>
         </div>

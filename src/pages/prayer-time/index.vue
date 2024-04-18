@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <PageHeader title="اوقات الصلاه" />
+<!--  <PageHeader title="اوقات الصلاه" />-->
 
   <div class="prayer-time">
     <v-container>

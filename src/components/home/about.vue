@@ -14,7 +14,9 @@
               <h2 class="text-primary-dark text-[50px] leading-[60px] font-[800] mt-[6px] block">ساهم معنا بالإلتحاق</h2>
             </div>
             <p class="text-[16px]">في مدرستنا ستتعلم القران الكريم واللسان العربي الفصيح</p>
-            <v-btn size="large" flat color="primary2" class="mt-[70px]">اكتشف المزيد</v-btn>
+            <router-link :to="{ path: '/', hash: '#features' }">
+              <v-btn size="large" flat color="primary2" class="mt-[70px]">اكتشف المزيد</v-btn>
+            </router-link>
 
           </div>
         </v-col>

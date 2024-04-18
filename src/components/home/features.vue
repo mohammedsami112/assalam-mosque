@@ -30,7 +30,7 @@ import {reactive, ref, watch} from 'vue'
 </script>
 
 <template>
-  <section class="section features-section relative block">
+  <section class="section features-section relative block" id="features">
     <v-container>
       <v-row>
         <v-col class="flex justify-center xl:block" cols="12" lg="4" v-for="(item, index) in data" :key="index">
