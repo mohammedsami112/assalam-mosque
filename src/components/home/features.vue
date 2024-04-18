@@ -1,9 +1,11 @@
 <script setup>
-  import { ref } from 'vue'
+import {reactive, ref, watch} from 'vue'
   import Image1 from '@/assets/images/features/1.jpg'
   import Image2 from '@/assets/images/features/2.jpg'
   import Image3 from '@/assets/images/features/3.jpg'
+  import { useAppStore } from "@/store/app";
 
+  const AppStore = useAppStore()
   const data = ref([
     {
       image: Image1,
@@ -18,6 +20,13 @@
       title: 'المستوى الثاني'
     },
   ])
+  const mainSettings = reactive({
+    phone: null,
+  })
+  watch(() => AppStore.home, (home) => {
+    mainSettings.phone = home.settings.filter(setting => setting.name == 'phone_number')[0].value.replace('+', '');
+
+  }, {deep: true})
 </script>
 
 <template>
@@ -31,7 +40,7 @@
               <h3 class="text-[35px] font-[900] leading-[60px] text-transparent" style="-webkit-text-stroke: 2px #fff">{{ item.title }}</h3>
             </div>
             <div class="btn-box absolute bottom-[42px] left-[135px] z-[2] rotate-[-13deg]">
-              <a href="#" class="relative text-[18px] text-white leading-[18px] font-[500] bottom-0 left-0 bg-primary pt-[3px] pr-[40px] pb-[3px] pl-[40px] rounded-tl-[5px] rounded-bl-[25px] rounded-br-[25px] transition-all duration-500 ease-in-out">سجل لدينا</a>
+              <a :href="'https://api.whatsapp.com/send/?phone=' + mainSettings.phone + '&text=' + item.title" class="relative text-[18px] text-white leading-[18px] font-[500] bottom-0 left-0 bg-primary pt-[3px] pr-[40px] pb-[3px] pl-[40px] rounded-tl-[5px] rounded-bl-[25px] rounded-br-[25px] transition-all duration-500 ease-in-out">سجل لدينا</a>
             </div>
           </div>
         </v-col>

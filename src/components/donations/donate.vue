@@ -29,9 +29,9 @@
       required: helpers.withMessage('حقل المبلغ مطلوب', required),
       numeric: helpers.withMessage('المبلغ غير صحيح', numeric),
     },
-    type: {
-      required: helpers.withMessage('حقل نوع التبرع مطلوب', required),
-    },
+    // type: {
+    //   required: helpers.withMessage('حقل نوع التبرع مطلوب', required),
+    // },
     name: {
       required: helpers.withMessage('حقل الاسم مطلوب', required),
     },
@@ -97,7 +97,7 @@
             <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
           </v-col>
           <v-col cols="12">
-            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
+            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
           </v-col>
           <v-col cols="12" lg="4">
             <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
@@ -119,7 +119,7 @@
             <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
           </v-col>
           <v-col cols="12">
-            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat :error-messages="v$.type.$errors.map(e => e.$message)" @blur="v$.type.$touch" @input="v$.type.$touch"></v-select>
+            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
           </v-col>
           <v-col cols="12" lg="4">
             <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>

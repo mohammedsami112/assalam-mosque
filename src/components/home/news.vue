@@ -1,8 +1,29 @@
 <script setup>
+  import { ref } from 'vue'
   import {useAppStore} from "@/store/app";
+  import { usePostsStore } from "@/store/posts";
   import moment from 'moment'
+  import PostsApi from '@/controllers/posts'
 
   const AppStore = useAppStore()
+  const PostsStore = usePostsStore()
+
+  const categoryId = ref(1)
+  const loading = ref(false)
+
+  const getPosts = (category) => {
+
+    categoryId.value = category
+    loading.value = true
+
+    PostsApi.getPosts(category).then(response => {
+      PostsStore.setPosts(response.data)
+    }).finally(() => {
+      loading.value = false
+    })
+
+  }
+
 </script>
 
 <template>
@@ -12,8 +33,22 @@
         <span class="block text-[20px] text-primary font-[700] leading-[24px] mb-[10px]">أخر الأنشطة</span>
         <h2 class="block text-primary-dark text-[30px] leading-[60px] font-[900] mt-[6px]">أحدث الفعاليات في الملتقي</h2>
       </div>
-      <v-row>
-        <v-col cols="12" lg="4" v-for="item in AppStore.home.latest_posts">
+      <div class="tabs mb-5">
+        <v-row>
+          <v-col cols="12" lg="6">
+            <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: categoryId == 2}" @click="getPosts(2)">
+              <h3>اخبار الجمعية</h3>
+            </div>
+          </v-col>
+          <v-col cols="12" lg="6">
+            <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: categoryId == 1}" @click="getPosts(1)">
+              <h3>فعليات الجمعية</h3>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+      <v-row v-if="!loading">
+        <v-col cols="12" lg="4" v-for="item in PostsStore.posts">
           <div class="news-card relative block">
             <div class="thumbnail relative block overflow-hidden rounded-tl-[20px] rounded-tr-[20px] z-[1]">
               <img width="370" height="250" class="w-full transition-all duration-500 ease-in-out" :src="item.thumbnail" alt="">
@@ -49,10 +84,26 @@
           </div>
         </v-col>
       </v-row>
+      <div v-else class="w-full h-full flex justify-center items-center">
+        <v-progress-circular
+          color="primary"
+          indeterminate
+          :size="83"
+          :width="5"
+
+        ></v-progress-circular>
+      </div>
     </v-container>
   </section>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  @import "@/assets/scss/_vars.scss";
+  .tabs {
+    .tab {
+      &.active {
+        background: $primary2;
+      }
+    }
+  }
 </style>

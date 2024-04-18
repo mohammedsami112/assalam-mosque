@@ -31,7 +31,7 @@
 </script>
 
 <template>
-  <PageHeader title="التبراعات" />
+<!--  <PageHeader title="التبراعات" />-->
   <v-container>
     <Donate />
     <LatestDonations />

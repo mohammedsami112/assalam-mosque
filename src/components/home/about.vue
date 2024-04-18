@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <section class="section about-section mb-20" id="about">
+  <section class="section about-section xl:mb-20" id="about">
     <v-container>
       <v-row>
         <v-col cols="12" lg="6">
@@ -20,7 +20,7 @@
         </v-col>
         <v-col cols="12" lg="6">
           <div class="right relative block">
-            <div class="relative z-[2] flex justify-center xl:block">
+            <div class="relative z-[2] flex justify-center hidden xl:block">
               <img :src="Image1" class="w-full rounded-[50%] max-w-[440px] xl:max-w-full">
             </div>
             <div class="absolute bottom-[-75px] right-[-95px] z-[2] hidden xl:block">

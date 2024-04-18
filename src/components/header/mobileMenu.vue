@@ -10,8 +10,9 @@
     <v-navigation-drawer
       class="pt-[30px]"
       v-model="drawer"
-      color="primary-dark"
+
       temporary
+      location="right"
     >
       <v-list density="compact" nav>
         <ul>

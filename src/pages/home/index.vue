@@ -10,7 +10,7 @@
 
 <template>
   <HomeSlider />
-  <HomeDonationButton />
+<!--  <HomeDonationButton />-->
   <HomeAboutSection />
   <HomeDonationsSection />
   <HomeFeaturesSection />

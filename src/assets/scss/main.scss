@@ -5,7 +5,7 @@
 
 body {
   font-family: "Tajawal", sans-serif!important;
-  @apply pt-[88px] xl:pt-[165px];
+  @apply xl:pt-[154px];
 }
 .Vue-Toastification__toast-body {
   font-family: "Tajawal", sans-serif!important;
@@ -19,7 +19,7 @@ section.section {
 // Header
 header {
   box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.05);
-  @apply fixed w-full top-0 z-10 bg-white;
+  @apply xl:fixed w-full xl:top-0 z-10 bg-white;
   .right {
     .top {
       .left {
@@ -103,7 +103,7 @@ header {
 
 // Slider
 .main-slider {
-  height: 100vh;
+  height: 500px;
   .swiper {
     @apply h-full;
     .slider-item {
