@@ -15,8 +15,10 @@
 
       inputs.phone_number = settingsData.filter(setting => setting.name == 'phone_number')[0].value
       inputs.email = settingsData.filter(setting => setting.name == 'email')[0].value
-      inputs.address1 = settingsData.filter(setting => setting.name == 'address1')[0].value
-      inputs.address2 = settingsData.filter(setting => setting.name == 'address2')[0].value
+      inputs.google_map = settingsData.filter(setting => setting.name == 'google_map')[0].value
+      inputs.facebook = settingsData.filter(setting => setting.name == 'facebook')[0].value
+      inputs.youtube = settingsData.filter(setting => setting.name == 'youtube')[0].value
+      inputs.instagram = settingsData.filter(setting => setting.name == 'instagram')[0].value
       inputs.stripe_secret_key = settingsData.filter(setting => setting.name == 'stripe_secret_key')[0].value
       inputs.stripe_publish_key = settingsData.filter(setting => setting.name == 'stripe_publish_key')[0].value
       inputs.paypal_mode = settingsData.filter(setting => setting.name == 'paypal_mode')[0].value
@@ -32,8 +34,10 @@
   const inputs = reactive({
     phone_number: null,
     email: null,
-    address1: null,
-    address2: null,
+    google_map: null,
+    facebook: null,
+    youtube: null,
+    instagram: null,
     stripe_secret_key: null,
     stripe_publish_key: null,
     paypal_mode: null,
@@ -45,13 +49,9 @@
   const $externalResults = ref({})
 
   const rules = computed(() => ({
-    phone_number: { required: helpers.withMessage('Phone Number Is Required', required) },
     email: {
-      required: helpers.withMessage('Email Is Required', required),
       email: helpers.withMessage('Email Invalid', email)
     },
-    address1: { required: helpers.withMessage('Address 1 Is Required', required) },
-    address2: { required: helpers.withMessage('Address 2 Is Required', required) },
     stripe_secret_key: { required: helpers.withMessage('Stripe Secret Key Is Required', required) },
     stripe_publish_key: { required: helpers.withMessage('Stripe Publish Key Is Required', required) },
     paypal_mode: { required: helpers.withMessage('Paypal Mode Is Required', required) },
@@ -106,9 +106,6 @@
           <VCol cols="12" lg='6'>
             <VTextField
               :disabled='isLoading'
-              :error-messages='validate.phone_number.$errors.map(e => e.$message)'
-              @input="validate.phone_number.$touch"
-              @blur="validate.phone_number.$touch"
               v-model="inputs.phone_number"
               label="Phone Number"
               type="text"
@@ -132,11 +129,8 @@
           <VCol cols="12" lg='6'>
             <VTextField
               :disabled='isLoading'
-              :error-messages='validate.address1.$errors.map(e => e.$message)'
-              @input="validate.address1.$touch"
-              @blur="validate.address1.$touch"
-              v-model="inputs.address1"
-              label="Address 1"
+              v-model="inputs.google_map"
+              label="Google Maps Link"
               type="text"
               required
 
@@ -145,11 +139,28 @@
           <VCol cols="12" lg='6'>
             <VTextField
               :disabled='isLoading'
-              :error-messages='validate.address2.$errors.map(e => e.$message)'
-              @input="validate.address2.$touch"
-              @blur="validate.address2.$touch"
-              v-model="inputs.address2"
-              label="Address 2"
+              v-model="inputs.facebook"
+              label="Facebook Page"
+              type="text"
+              required
+
+            />
+          </VCol>
+          <VCol cols="12" lg='6'>
+            <VTextField
+              :disabled='isLoading'
+              v-model="inputs.youtube"
+              label="Youtube Channel"
+              type="text"
+              required
+
+            />
+          </VCol>
+          <VCol cols="12" lg='6'>
+            <VTextField
+              :disabled='isLoading'
+              v-model="inputs.instagram"
+              label="Instagram"
               type="text"
               required
 

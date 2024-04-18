@@ -56,12 +56,12 @@ const tableSettings = reactive({
       sortable: false,
       align: 'center'
     },
-    {
-      title: 'actions',
-      key: 'actions',
-      sortable: false,
-      align: 'center'
-    },
+    // {
+    //   title: 'actions',
+    //   key: 'actions',
+    //   sortable: false,
+    //   align: 'center'
+    // },
   ],
   totalItems: 0,
   itemsPerPage: 10,
@@ -108,12 +108,12 @@ const deleteCategories = (categoryId = null) => {
         Categories
       </v-card-title>
     </v-card-item>
-    <v-card-item>
-      <router-link :to="{name: 'create-categories'}">
-        <v-btn variant='flat' class='me-3'>Add New Category</v-btn>
-      </router-link>
-      <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deleteCategories()'></v-btn>
-    </v-card-item>
+<!--    <v-card-item>-->
+<!--      <router-link :to="{name: 'create-categories'}">-->
+<!--        <v-btn variant='flat' class='me-3'>Add New Category</v-btn>-->
+<!--      </router-link>-->
+<!--      <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deleteCategories()'></v-btn>-->
+<!--    </v-card-item>-->
     <v-card-text>
       <v-data-table-server
         v-model='selectedCategories'
@@ -126,27 +126,6 @@ const deleteCategories = (categoryId = null) => {
         @update:options="getCategories"
         show-select
       >
-        <template v-slot:item.actions="row">
-          <router-link :to="{name: 'update-categories', params: {id: row.item.id}}">
-            <v-btn
-              color='default'
-              variant="plain"
-              icon='ri-pencil-line'
-              size="small"
-              class="me-3"
-            ></v-btn>
-          </router-link>
-          <v-btn
-            color='default'
-            variant="plain"
-            plain
-            icon='ri-delete-bin-line'
-            size="small"
-            :disabled='!row.item.deletable'
-            @click='deleteCategories(row.item.id)'
-          >
-          </v-btn>
-        </template>
       </v-data-table-server>
     </v-card-text>
   </VCard>
