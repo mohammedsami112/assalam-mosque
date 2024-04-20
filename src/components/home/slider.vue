@@ -13,20 +13,29 @@
       image: SliderImage1,
       subTitle: 'تعليم علوم القران',
       title: 'خيركم من تعلم القرآن وعلمه',
-      route: '/'
+      route: {
+        path: '/',
+        hash: "#features"
+      }
     },
     {
       image: SliderImage2,
       subTitle: 'تعليم القران الكريم واللغة العربية',
       title: 'سجل ابنائك معنا',
-      route: '/'
+      route: {
+        path: '/',
+        hash: "#features"
+      }
     },
     {
       image: SliderImage3,
       subTitle: 'إفطار الصائم',
       title: 'من فطَّر صائماً كان له مثل أجره غير أنه لا ينقص من أجر الصائم شيئاً\n' +
         'صدق رسول الله',
-      route: '/'
+      route: {
+        path: '/',
+        hash: "#donations"
+      }
     },
 
   ])
@@ -51,7 +60,7 @@
             <div class="slider-content">
               <p>{{ item.subTitle }}</p>
               <h2>{{ item.title }}</h2>
-              <router-link :to="{ path: '/', hash: '#features' }">
+              <router-link :to="item.route">
                 <v-btn variant="tonal" flat color="primary2">
                   اكتشف المزيد
                 </v-btn>
