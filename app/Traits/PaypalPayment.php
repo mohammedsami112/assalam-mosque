@@ -33,6 +33,8 @@ trait PaypalPayment
 
     public function makePaypalPayment($amount = 0) {
 
+        $this->setupPaypalConfig();
+
         $paypal = new PayPalClient;
         $paypal->setApiCredentials(config('paypal'));
         $paypalToken = $paypal->getAccessToken();

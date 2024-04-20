@@ -16,6 +16,7 @@ trait StripePayment
     }
 
     public function makeStripePayment($amount = 0, $title = null) {
+        $this->setupStripeConfig();
 
         $stripe = new StripeClient($this->settings['stripe_secret_key']['value']);
 
