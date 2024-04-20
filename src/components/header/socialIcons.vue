@@ -1,7 +1,8 @@
 <script setup>
   import { defineProps } from 'vue'
+  import {useAppStore} from "@/store/app";
 
-  const props = defineProps(['socials'])
+  const AppStore = useAppStore()
 
 </script>
 
@@ -14,20 +15,20 @@
           <font-awesome-icon :icon="['fas', 'mosque']" />
         </router-link>
       </li>
-      <li v-if="props.socials.google_map != null">
-        <a class="text-primary" :href="props.socials.google_map"><FontAwesomeIcon :icon="['fa', 'location-dot']"></FontAwesomeIcon></a>
+      <li v-if="AppStore.socials.google_map != null">
+        <a class="text-primary" :href="AppStore.socials.google_map"><FontAwesomeIcon :icon="['fa', 'location-dot']"></FontAwesomeIcon></a>
       </li>
-      <li v-if="props.socials.phone != null">
-        <a class="text-primary" :href="'https://api.whatsapp.com/send/?phone=' + props.socials.phone"><FontAwesomeIcon :icon="['fab', 'whatsapp']"></FontAwesomeIcon></a>
+      <li v-if="AppStore.socials.phone != null">
+        <a class="text-primary" :href="'https://api.whatsapp.com/send/?phone=' + AppStore.socials.phone"><FontAwesomeIcon :icon="['fab', 'whatsapp']"></FontAwesomeIcon></a>
       </li>
-      <li v-if="props.socials.facebook != null">
-        <a class="text-primary" :href="props.socials.facebook"><FontAwesomeIcon :icon="['fab', 'facebook']"></FontAwesomeIcon></a>
+      <li v-if="AppStore.socials.facebook != null">
+        <a class="text-primary" :href="AppStore.socials.facebook"><FontAwesomeIcon :icon="['fab', 'facebook']"></FontAwesomeIcon></a>
       </li>
-      <li v-if="props.socials.youtube != null">
-        <a class="text-primary" :href="props.socials.youtube"><FontAwesomeIcon :icon="['fab', 'youtube']"></FontAwesomeIcon></a>
+      <li v-if="AppStore.socials.youtube != null">
+        <a class="text-primary" :href="AppStore.socials.youtube"><FontAwesomeIcon :icon="['fab', 'youtube']"></FontAwesomeIcon></a>
       </li>
-      <li v-if="props.socials.instagram != null">
-        <a class="text-primary hover:bg-primary" :href="props.socials.instagram"><FontAwesomeIcon :icon="['fab', 'instagram']"></FontAwesomeIcon></a>
+      <li v-if="AppStore.socials.instagram != null">
+        <a class="text-primary hover:bg-primary" :href="AppStore.socials.instagram"><FontAwesomeIcon :icon="['fab', 'instagram']"></FontAwesomeIcon></a>
       </li>
     </ul>
   </div>

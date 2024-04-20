@@ -40,20 +40,20 @@
           },
         }"
       >
-        <swiper-slide v-for="item in AppStore.home.donation_types" :key="item.id">
-          <router-link :to="{name: 'donation-page', params: {type: item.id}}">
-            <div class="donation-card relative block">
-              <div class="card-thumbnail relative block rounded-tl-[20px] rounded-tr-[20px] overflow-hidden z-[1]">
-                <img class="w-full" width="370" height="250" :src="item.thumbnail" alt="">
-              </div>
-              <div class="card-content relative block bg-white rounded-bl-[20px] rounded-br-[20px] border-[1px] border-solid border-[#eee9db] pt-[22px] pr-[30px] pb-[30px] pl-[20px] border-t-0">
-                <h3 class="title text-[26px] leading-[36px] font-[800] text-primary-dark">
-                  {{ item.title }}
-                </h3>
-              </div>
-            </div>
-          </router-link>
-        </swiper-slide>
+<!--        <swiper-slide v-for="item in AppStore.home.donation_types" :key="item.id">-->
+<!--          <router-link :to="{name: 'donation-page', params: {type: item.id}}">-->
+<!--            <div class="donation-card relative block">-->
+<!--              <div class="card-thumbnail relative block rounded-tl-[20px] rounded-tr-[20px] overflow-hidden z-[1]">-->
+<!--                <img class="w-full" width="370" height="250" :src="item.thumbnail" alt="">-->
+<!--              </div>-->
+<!--              <div class="card-content relative block bg-white rounded-bl-[20px] rounded-br-[20px] border-[1px] border-solid border-[#eee9db] pt-[22px] pr-[30px] pb-[30px] pl-[20px] border-t-0">-->
+<!--                <h3 class="title text-[26px] leading-[36px] font-[800] text-primary-dark">-->
+<!--                  {{ item.title }}-->
+<!--                </h3>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </router-link>-->
+<!--        </swiper-slide>-->
       </swiper>
 
     </v-container>

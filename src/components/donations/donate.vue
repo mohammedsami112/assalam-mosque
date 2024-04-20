@@ -80,12 +80,14 @@
       <v-row>
         <v-col cols="12" lg="6">
           <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'paypal'}" @click="changeTabs('paypal')">
-            <img class="w-[150px]" :src="PayPalLogo" alt="">
+<!--            <img class="w-[150px]" :src="PayPalLogo" alt="">-->
+            <h3 class="text-xl">باي بال</h3>
           </div>
         </v-col>
         <v-col cols="12" lg="6">
           <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'visa-mastercard'}" @click="changeTabs('visa-mastercard')">
-            <img class="w-[200px]" :src="VisaMastercardLogo" alt="">
+<!--            <img class="w-[200px]" :src="VisaMastercardLogo" alt="">-->
+            <h3 class="text-xl">البطاقات البنكية</h3>
           </div>
         </v-col>
       </v-row>
@@ -109,7 +111,7 @@
             <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
           </v-col>
           <v-col cols="12">
-            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر بايبال </v-btn>
+            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر باي بال </v-btn>
           </v-col>
         </v-row>
       </div>
