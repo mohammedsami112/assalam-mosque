@@ -13,7 +13,7 @@ import "vue-toastification/dist/index.css";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot, faMosque } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook, faYoutube, faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faYoutube, faInstagram, faWhatsapp, faTiktok } from "@fortawesome/free-brands-svg-icons";
 
 
 export function registerPlugins (app) {
@@ -23,7 +23,7 @@ export function registerPlugins (app) {
     .use(pinia)
     .use(Toast)
 
-  library.add(faLocationDot, faFacebook, faYoutube, faInstagram, faWhatsapp, faMosque)
+  library.add(faLocationDot, faFacebook, faYoutube, faInstagram, faWhatsapp, faMosque, faTiktok)
 
   app.component("FontAwesomeIcon", FontAwesomeIcon)
 }

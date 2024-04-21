@@ -22,24 +22,24 @@
       <DonationButton></DonationButton>
 
 
-      <swiper
-        :slides-per-view="1"
-        :space-between="10"
-        :breakpoints="{
-          '640': {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          '768': {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          '1024': {
-            slidesPerView: 4,
-            spaceBetween: 50,
-          },
-        }"
-      >
+<!--      <swiper-->
+<!--        :slides-per-view="1"-->
+<!--        :space-between="10"-->
+<!--        :breakpoints="{-->
+<!--          '640': {-->
+<!--            slidesPerView: 2,-->
+<!--            spaceBetween: 20,-->
+<!--          },-->
+<!--          '768': {-->
+<!--            slidesPerView: 4,-->
+<!--            spaceBetween: 40,-->
+<!--          },-->
+<!--          '1024': {-->
+<!--            slidesPerView: 4,-->
+<!--            spaceBetween: 50,-->
+<!--          },-->
+<!--        }"-->
+<!--      >-->
 <!--        <swiper-slide v-for="item in AppStore.home.donation_types" :key="item.id">-->
 <!--          <router-link :to="{name: 'donation-page', params: {type: item.id}}">-->
 <!--            <div class="donation-card relative block">-->
@@ -54,7 +54,7 @@
 <!--            </div>-->
 <!--          </router-link>-->
 <!--        </swiper-slide>-->
-      </swiper>
+<!--      </swiper>-->
 
     </v-container>
   </section>

@@ -4,6 +4,8 @@
   import { usePostsStore } from "@/store/posts";
   import moment from 'moment'
   import PostsApi from '@/controllers/posts'
+  import { Swiper, SwiperSlide } from "swiper/vue";
+  import 'swiper/css'
 
   const AppStore = useAppStore()
   const PostsStore = usePostsStore()
@@ -47,11 +49,29 @@
           </v-col>
         </v-row>
       </div>
-      <v-row v-if="!loading">
-        <v-col cols="12" lg="4" v-for="item in PostsStore.posts">
+      <swiper
+        v-if="!loading"
+        :slides-per-view="1"
+        :space-between="10"
+        :breakpoints="{
+          '640': {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          '768': {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          '1024': {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }"
+      >
+        <swiper-slide v-for="item in PostsStore.posts" :key="item.id">
           <div class="news-card relative block">
-            <div class="thumbnail relative block overflow-hidden rounded-tl-[20px] rounded-tr-[20px] z-[1]">
-              <img width="370" height="250" class="w-full transition-all duration-500 ease-in-out" :src="item.thumbnail" alt="">
+            <div class="thumbnail relative block overflow-hidden rounded-tl-[20px] rounded-tr-[20px] z-[1] h-[250px]">
+              <img class="w-full h-full transition-all duration-500 ease-in-out" :src="item.thumbnail" alt="">
             </div>
             <div class="content relative block border-[1px] border-t-0 border-[#eee9db] rounded-bl-[20px] rounded-br-[20px] bg-white transition-all duration-500 ease-in-out">
 
@@ -82,8 +102,8 @@
               </div>
             </div>
           </div>
-        </v-col>
-      </v-row>
+        </swiper-slide>
+      </swiper>
       <div v-else class="w-full h-full flex justify-center items-center">
         <v-progress-circular
           color="primary"

@@ -19,7 +19,8 @@ export const useAppStore = defineStore('app', {
         google_map: null,
         facebook: null,
         youtube: null,
-        instagram: null
+        instagram: null,
+        tiktok: null,
       }
 
       socials.phone = data.filter(setting => setting.name == 'phone_number')[0].value
@@ -27,6 +28,7 @@ export const useAppStore = defineStore('app', {
       socials.facebook = data.filter(setting => setting.name == 'facebook')[0].value
       socials.youtube = data.filter(setting => setting.name == 'youtube')[0].value
       socials.instagram = data.filter(setting => setting.name == 'instagram')[0].value
+      socials.tiktok = data.filter(setting => setting.name == 'tiktok')[0].value
 
       this.socials = socials
 
