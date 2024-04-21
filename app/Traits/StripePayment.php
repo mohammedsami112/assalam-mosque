@@ -44,6 +44,7 @@ trait StripePayment
     }
 
     public function validateStripePayments($session_id) {
+        $this->setupStripeConfig();
         $stripe = new StripeClient($this->settings['stripe_secret_key']['value']);
 
         $response = $stripe->checkout->sessions->retrieve($session_id);

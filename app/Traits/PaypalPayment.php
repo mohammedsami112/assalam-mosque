@@ -59,6 +59,7 @@ trait PaypalPayment
     }
 
     public function validatePaypalPayments($token) {
+        $this->setupPaypalConfig();
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
