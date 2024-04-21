@@ -5,7 +5,8 @@ export default {
     return Api.get('/posts', {
       params: {
         page: inputs.page,
-        limit: inputs.itemsPerPage
+        limit: inputs.itemsPerPage,
+        search: inputs.search
       }
     }).then(response => response.data)
   },

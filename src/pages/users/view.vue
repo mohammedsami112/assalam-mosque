@@ -3,7 +3,6 @@ import UsersApi from '@/controllers/users'
 import { useToast } from 'vue-toastification'
 import Swal from 'sweetalert2/dist/sweetalert2';
 
-
 const loading = ref(false)
 const selectedUsers = ref([])
 const toast = useToast()

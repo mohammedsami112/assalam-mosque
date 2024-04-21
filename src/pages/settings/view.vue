@@ -19,6 +19,7 @@
       inputs.facebook = settingsData.filter(setting => setting.name == 'facebook')[0].value
       inputs.youtube = settingsData.filter(setting => setting.name == 'youtube')[0].value
       inputs.instagram = settingsData.filter(setting => setting.name == 'instagram')[0].value
+      inputs.tiktok = settingsData.filter(setting => setting.name == 'tiktok')[0].value
       inputs.stripe_secret_key = settingsData.filter(setting => setting.name == 'stripe_secret_key')[0].value
       inputs.stripe_publish_key = settingsData.filter(setting => setting.name == 'stripe_publish_key')[0].value
       inputs.paypal_mode = settingsData.filter(setting => setting.name == 'paypal_mode')[0].value
@@ -38,6 +39,7 @@
     facebook: null,
     youtube: null,
     instagram: null,
+    tiktok: null,
     stripe_secret_key: null,
     stripe_publish_key: null,
     paypal_mode: null,
@@ -161,6 +163,16 @@
               :disabled='isLoading'
               v-model="inputs.instagram"
               label="Instagram"
+              type="text"
+              required
+
+            />
+          </VCol>
+          <VCol cols="12" lg='6'>
+            <VTextField
+              :disabled='isLoading'
+              v-model="inputs.tiktok"
+              label="Tiktok"
               type="text"
               required
 

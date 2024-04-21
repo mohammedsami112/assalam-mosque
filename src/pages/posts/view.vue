@@ -4,9 +4,15 @@ import { useToast } from 'vue-toastification'
 import Swal from 'sweetalert2/dist/sweetalert2';
 
 
+const search = ref()
+const title = ref()
 const loading = ref(false)
 const selectedPosts = ref([])
 const toast = useToast()
+
+watch(() => title, (value) => {
+  search.value = value
+}, {deep: true})
 const getPosts = (inputs = {}) => {
   loading.value = true
   PostsApi.getPosts(inputs).then(response => {
@@ -115,10 +121,11 @@ const deletePosts = (postId = null) => {
       </v-card-title>
     </v-card-item>
     <v-card-item>
-      <router-link :to="{name: 'create-posts'}">
-        <v-btn variant='flat' class='me-3'>Add New Posts</v-btn>
-      </router-link>
-      <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deletePosts()'></v-btn>
+        <router-link :to="{name: 'create-posts'}">
+          <v-btn variant='flat' class='me-3'>Add New Posts</v-btn>
+        </router-link>
+        <v-btn variant='flat' color='error' icon='ri-delete-bin-line' @click='deletePosts()'></v-btn>
+        <v-text-field v-model="search" class="ma-2" density="compact" placeholder="Search title..." hide-details></v-text-field>
     </v-card-item>
     <v-card-text>
       <v-data-table-server
@@ -129,6 +136,7 @@ const deletePosts = (postId = null) => {
         :items-length="tableSettings.totalItems"
         :items="tableSettings.items"
         :loading='loading'
+        :search='search'
         @update:options="getPosts"
         show-select
       >
