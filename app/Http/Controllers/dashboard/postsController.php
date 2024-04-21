@@ -22,7 +22,9 @@ class postsController extends Controller {
     }
 
     public function getPosts(Request $request) {
-        $posts = Post::paginate($request->limit ?? 10);
+        $posts = Post::when($request->search, function($query, $search) {
+            $query->where('title', 'LIKE', "%$search%");
+        })->paginate($request->limit ?? 10);
 
         return $this->success($posts);
     }

@@ -22,7 +22,7 @@ class donationsController extends Controller {
     }
 
     public function getDonations() {
-        $donations = Donation::without('donationType')->select(['id', 'name', 'amount', 'show_name'])->orderBy('created_at', 'desc')->take(10)->get();
+        $donations = Donation::without('donationType')->select(['id', 'name', 'amount', 'show_name'])->orderBy('id', 'desc')->take(10)->get();
 
         $donations->each(function($donation) {
             $donation->name = $donation->show_name == 1 ? $donation->name : 'فاعل خير';

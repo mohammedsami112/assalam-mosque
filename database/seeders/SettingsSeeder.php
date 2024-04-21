@@ -38,6 +38,10 @@ class SettingsSeeder extends Seeder
             'value' => '#'
         ]);
         Setting::create([
+            'name' => 'tiktok',
+            'value' => '#'
+        ]);
+        Setting::create([
             'name' => 'stripe_secret_key',
             'value' => 'sk_test_51MP9KJBZ4PVMyN0P2RbbTdB1cKVBubyPHStNQnNKbYZxc3Ho2D5xzOPY6CsNhtNr78AcggJzSEDYYs0QLSsOegaA00oYkO4nNC'
         ]);

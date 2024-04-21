@@ -14,7 +14,7 @@ class postsController extends Controller
     }
 
     public function getPosts(Request $request) {
-        $posts = Post::where('category', '=', $request->categoryId ?? 1)->take(3)->get();
+        $posts = Post::where('category', '=', $request->categoryId ?? 1)->where('status', '=', 1)->without(['postCategory'])->orderBy('id', 'desc')->get();
 
         return $this->success($posts);
 
