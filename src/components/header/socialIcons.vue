@@ -1,6 +1,7 @@
 <script setup>
   import { defineProps } from 'vue'
   import {useAppStore} from "@/store/app";
+  import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
   const AppStore = useAppStore()
 
@@ -19,6 +20,11 @@
         <router-link class="text-primary" :to="{ name: 'prayer-page' }">
           <font-awesome-icon :icon="['fas', 'mosque']" />
         </router-link>
+      </li>
+      <li class="mb-[4px] xl:mb-0" v-if="AppStore.socials.email != null">
+        <a class="text-primary" :href="'mailto:' + AppStore.socials.email">
+          <font-awesome-icon :icon="['fas', 'envelope']"></font-awesome-icon>
+        </a>
       </li>
       <li class="mb-[4px] xl:mb-0" v-if="AppStore.socials.google_map != null">
         <a class="text-primary" :href="AppStore.socials.google_map"><FontAwesomeIcon :icon="['fa', 'location-dot']"></FontAwesomeIcon></a>

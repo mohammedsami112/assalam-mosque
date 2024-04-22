@@ -16,6 +16,7 @@ export const useAppStore = defineStore('app', {
     handelSocials(data)  {
       let socials = {
         phone: null,
+        email: null,
         google_map: null,
         facebook: null,
         youtube: null,
@@ -24,6 +25,7 @@ export const useAppStore = defineStore('app', {
       }
 
       socials.phone = data.filter(setting => setting.name == 'phone_number')[0].value
+      socials.email = data.filter(setting => setting.name == 'email')[0].value
       socials.google_map = data.filter(setting => setting.name == 'google_map')[0].value
       socials.facebook = data.filter(setting => setting.name == 'facebook')[0].value
       socials.youtube = data.filter(setting => setting.name == 'youtube')[0].value
