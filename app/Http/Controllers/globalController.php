@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class globalController extends Controller {
 
     private function getSettings() {
-        $settings = Setting::whereIn('name', ['phone_number', 'google_map', 'facebook', 'youtube', 'instagram', 'tiktok'])->get();
+        $settings = Setting::whereIn('name', ['email', 'phone_number', 'google_map', 'facebook', 'youtube', 'instagram', 'tiktok'])->get();
 
         return $settings;
     }
