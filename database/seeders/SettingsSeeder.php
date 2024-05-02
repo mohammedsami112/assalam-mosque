@@ -23,47 +23,47 @@ class SettingsSeeder extends Seeder
         ]);
         Setting::create([
             'name' => 'google_map',
-            'value' => '#'
+            'value' => 'https://maps.app.goo.gl/KdPQR5fSTitBBDD78'
         ]);
         Setting::create([
             'name' => 'facebook',
-            'value' => '#'
+            'value' => 'https://www.facebook.com/profile.php?id=100040504191915'
         ]);
         Setting::create([
             'name' => 'youtube',
-            'value' => '#'
+            'value' => 'https://www.youtube.com/@assalammoschee'
         ]);
         Setting::create([
             'name' => 'instagram',
-            'value' => '#'
+            'value' => 'https://www.instagram.com/moscheeassalam'
         ]);
         Setting::create([
             'name' => 'tiktok',
-            'value' => '#'
+            'value' => 'https://www.tiktok.com/@moscheeassalam'
         ]);
         Setting::create([
             'name' => 'stripe_secret_key',
-            'value' => 'sk_test_51MP9KJBZ4PVMyN0P2RbbTdB1cKVBubyPHStNQnNKbYZxc3Ho2D5xzOPY6CsNhtNr78AcggJzSEDYYs0QLSsOegaA00oYkO4nNC'
+            'value' => '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'
         ]);
         Setting::create([
             'name' => 'stripe_publish_key',
-            'value' => 'pk_test_51MP9KJBZ4PVMyN0Ptoo8lrAxvMaKiEg5Y9HYOPH6MusMHT8Le17nyVOcUY5PKmG4s2oUjnWJMJh1mRPT3axXxHZ900mVN69quY'
+            'value' => 'pk_live_51OsoxCRv40UjEvDxK1D3u8OG7rs3FnvxbQc7lij7jalGgOU0YRShauJjAnJv9nHLHFcsWi2AY2SzkM2CRoZGh76u00gGJLLG1d'
         ]);
         Setting::create([
             'name' => 'paypal_mode',
-            'value' => 'sandbox'
+            'value' => 'live'
         ]);
         Setting::create([
             'name' => 'paypal_client_id',
-            'value' => 'AXlvQ7QA51orb1l5U5TA487nmV-njIp8pD-TRg-hwLmy76Fy6ZvzzA0f6Mxt7v1Qs26BC-KI4sT9bJHf'
+            'value' => 'AZGB_SxlpSZE8P6ZAMhYABIXsujeg-3FuA6YJMLVhsHZZtptfx1c_4LBq-Um5BLvdWEsrSnU8Yz4KQpi'
         ]);
         Setting::create([
             'name' => 'paypal_secret_id',
-            'value' => 'EMI4q218LCDB3l55CQbE6f7BFaQMcRGzNmLVY7ToEReQE9jLsB5Jps4H50tcawqPQBIquvxNY4cdc4pm'
+            'value' => 'EPdwT5OdLDD-qCGDJhFfO9Z5K8JIleciTD0K6cN4q8bIiRQYr2BO0C0fLETULl3aGV7TKChEbJtoR5n3'
         ]);
         Setting::create([
             'name' => 'paypal_app_id',
-            'value' => 'APP-80W284485P519543T'
+            'value' => 'MAAN - Arabischer Treff in sterreich'
         ]);
     }
 }
