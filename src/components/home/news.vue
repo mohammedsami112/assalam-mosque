@@ -32,19 +32,19 @@
   <section class="section news-section relative" id="news">
     <v-container>
       <div class="section-title text-center relative block mb-[46px]">
-        <span class="block text-[20px] text-primary font-[700] leading-[24px] mb-[10px]">أخر الأنشطة</span>
-        <h2 class="block text-primary-dark text-[30px] leading-[60px] font-[900] mt-[6px]">أحدث الفعاليات في الملتقي</h2>
+        <span class="block text-[20px] text-primary font-[700] leading-[24px] mb-[10px]">Neueste Aktivitäten</span>
+        <h2 class="block text-primary-dark text-[30px] leading-[60px] font-[900] mt-[6px]">Die neuesten Ereignisse im Forum</h2>
       </div>
       <div class="tabs mb-5">
         <v-row>
           <v-col cols="12" lg="6">
             <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: categoryId == 2}" @click="getPosts(2)">
-              <h3>اخبار الجمعية</h3>
+              <h3>Verbandsnachrichten</h3>
             </div>
           </v-col>
           <v-col cols="12" lg="6">
             <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: categoryId == 1}" @click="getPosts(1)">
-              <h3>فعليات الجمعية</h3>
+              <h3>Vereinsaktivitäten</h3>
             </div>
           </v-col>
         </v-row>
@@ -91,7 +91,7 @@
                   <div class="read-more relative">
                     <router-link :to="{name: 'posts-page', params: {id: item.id, slug: item.slug}}" class="text-[14px] font-[700] text-primary-dark">
                       <span class="mdi mdi-arrow-right-thin text-[16px] pr-[6px] relative top-[2px]"></span>
-                      اقرأ المزيد
+                      Lesen Sie mehr
                     </router-link>
                   </div>
                 </div>

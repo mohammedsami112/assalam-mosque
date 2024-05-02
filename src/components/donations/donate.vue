@@ -26,18 +26,18 @@
 
   const rules = computed(() => ({
     amount: {
-      required: helpers.withMessage('حقل المبلغ مطلوب', required),
-      numeric: helpers.withMessage('المبلغ غير صحيح', numeric),
+      required: helpers.withMessage('Das Betragsfeld ist erforderlich', required),
+      numeric: helpers.withMessage('Der Betrag ist falsch', numeric),
     },
     // type: {
     //   required: helpers.withMessage('حقل نوع التبرع مطلوب', required),
     // },
     name: {
-      required: helpers.withMessage('حقل الاسم مطلوب', required),
+      required: helpers.withMessage('Das Namensfeld ist erforderlich', required),
     },
     email: {
-      required: helpers.withMessage('حقل البريد الالكتروني مطلوب', required),
-      email: helpers.withMessage('البريد الالكتروني غير صالح', email)
+      required: helpers.withMessage('Das E-Mail-Feld ist erforderlich', required),
+      email: helpers.withMessage('E-Mail ist ungültig', email)
     },
 
   }))
@@ -81,13 +81,13 @@
         <v-col cols="12" lg="6">
           <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'paypal'}" @click="changeTabs('paypal')">
 <!--            <img class="w-[150px]" :src="PayPalLogo" alt="">-->
-            <h3 class="text-xl">باي بال</h3>
+            <h3 class="text-xl">PayPal</h3>
           </div>
         </v-col>
         <v-col cols="12" lg="6">
           <div class="tab flex justify-center items-center h-[100px] bg-[#f7f7f7] rounded-[9px] cursor-pointer transition-all duration-500 ease-in-out" :class="{active: payload.method == 'visa-mastercard'}" @click="changeTabs('visa-mastercard')">
 <!--            <img class="w-[200px]" :src="VisaMastercardLogo" alt="">-->
-            <h3 class="text-xl">البطاقات البنكية</h3>
+            <h3 class="text-xl">Bankkarten</h3>
           </div>
         </v-col>
       </v-row>
@@ -96,44 +96,44 @@
       <div class="donate-box" v-if="payload.method == 'paypal'">
         <v-row style="direction: rtl">
           <v-col cols="12">
-            <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.amount" label="die Summe" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
           </v-col>
           <v-col cols="12">
-            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
+            <v-select :disabled="isLoading" clearable label="Wählen Sie die Spendenart" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
           </v-col>
           <v-col cols="12" lg="4">
-            <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.name" label="Der Name" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
           </v-col>
           <v-col cols="12" lg="4">
-            <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.email" label="E-Mail" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
           </v-col>
           <v-col cols="12" lg="4" class="flex justify-center items-center">
-            <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
+            <v-switch :disabled="isLoading" v-model="payload.show_name" label="Name anzeigen" inset color="primary"></v-switch>
           </v-col>
           <v-col cols="12">
-            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر باي بال </v-btn>
+            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">Bezahlen Sie per PayPal</v-btn>
           </v-col>
         </v-row>
       </div>
       <div class="donate-box" v-if="payload.method == 'visa-mastercard'">
         <v-row style="direction: rtl">
           <v-col cols="12">
-            <v-text-field :disabled="isLoading" v-model="payload.amount" label="المبلغ" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.amount" label="die Summe" color="primary" variant="solo" flat :error-messages="v$.amount.$errors.map(e => e.$message)" @blur="v$.amount.$touch" @input="v$.amount.$touch"></v-text-field>
           </v-col>
           <v-col cols="12">
-            <v-select :disabled="isLoading" clearable label="اختر نوع التبرع" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
+            <v-select :disabled="isLoading" clearable label="Wählen Sie die Spendenart" v-model="payload.type" :items="donationStore.types" item-title="title" item-value="id" variant="solo" color="primary" flat></v-select>
           </v-col>
           <v-col cols="12" lg="4">
-            <v-text-field :disabled="isLoading" v-model="payload.name" label="الاسم" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.name" label="Der Name" color="primary" variant="solo" flat :error-messages="v$.name.$errors.map(e => e.$message)" @blur="v$.name.$touch" @input="v$.name.$touch"></v-text-field>
           </v-col>
           <v-col cols="12" lg="4">
-            <v-text-field :disabled="isLoading" v-model="payload.email" label="البريد الالكتروني" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
+            <v-text-field :disabled="isLoading" v-model="payload.email" label="E-Mail" color="primary" variant="solo" flat :error-messages="v$.email.$errors.map(e => e.$message)" @blur="v$.email.$touch" @input="v$.email.$touch"></v-text-field>
           </v-col>
           <v-col cols="12" lg="4" class="flex justify-center items-center">
-            <v-switch :disabled="isLoading" v-model="payload.show_name" label="اظهار الاسم" inset color="primary"></v-switch>
+            <v-switch :disabled="isLoading" v-model="payload.show_name" label="Name anzeigen" inset color="primary"></v-switch>
           </v-col>
           <v-col cols="12">
-            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">ادفع عبر البطاقة البنكية</v-btn>
+            <v-btn :loading="isLoading" size="x-large" flat color="primary" block @click="makeCardPayment()">Bezahlen Sie per Bankkarte</v-btn>
           </v-col>
         </v-row>
       </div>

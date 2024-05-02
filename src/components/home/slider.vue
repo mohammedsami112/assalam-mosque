@@ -11,8 +11,8 @@
   const sliderData = ref([
     {
       image: SliderImage1,
-      subTitle: 'تعليم علوم القران',
-      title: 'خيركم من تعلم القرآن وعلمه',
+      subTitle: 'Vermittlung der Wissenschaften des Korans',
+      title: 'Die Besten unter euch sind diejenigen, die den Koran lernen und ihn anderen lehren',
       route: {
         path: '/',
         hash: "#features"
@@ -20,8 +20,8 @@
     },
     {
       image: SliderImage2,
-      subTitle: 'تعليم القران الكريم واللغة العربية',
-      title: 'سجل ابنائك معنا',
+      subTitle: 'Unterrichten des Heiligen Korans und der arabischen Sprache',
+      title: 'Melden Sie Ihre Kinder bei uns an',
       route: {
         path: '/',
         hash: "#features"
@@ -29,7 +29,7 @@
     },
     {
       image: SliderImage3,
-      subTitle: 'إفطار الصائم',
+      subTitle: 'Frühstück für den Fastenden',
       title: 'من فطَّر صائماً كان له مثل أجره غير أنه لا ينقص من أجر الصائم شيئاً\n' +
         'صدق رسول الله',
       route: {
@@ -62,7 +62,7 @@
               <h2>{{ item.title }}</h2>
               <router-link :to="item.route">
                 <v-btn variant="tonal" flat color="primary2">
-                  اكتشف المزيد
+                  Finde mehr heraus
                 </v-btn>
               </router-link>
             </div>

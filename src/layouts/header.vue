@@ -11,13 +11,13 @@
 
   const menuItems = ref([
     {
-      title: 'الرئيسية',
+      title: 'Hauptsächlich',
       route: 'home-page',
       hash: false
 
     },
     {
-      title: 'المركز التعليمي',
+      title: 'Bildungszentrum\n',
       route: {
         path: '/',
         hash: '#about'
@@ -25,7 +25,7 @@
       hash: true
     },
     {
-      title: 'التبرعات',
+      title: 'Spenden',
       route: {
         path: '/',
         hash: '#donations'
@@ -33,7 +33,7 @@
       hash: true
     },
     {
-      title: 'احدث الفعاليات',
+      title: 'Letzte Veranstaltungen',
       route: {
         path: '/',
         hash: '#news'

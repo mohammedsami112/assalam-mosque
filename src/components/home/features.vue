@@ -9,15 +9,15 @@ import {reactive, ref, watch} from 'vue'
   const data = ref([
     {
       image: Image1,
-      title: 'الروضة'
+      title: 'Kindergarten'
     },
     {
       image: Image2,
-      title: 'المستوى الاول'
+      title: 'Level eins'
     },
     {
       image: Image3,
-      title: 'المستوى الثاني'
+      title: 'Zweites Level'
     },
   ])
   const mainSettings = reactive({
@@ -40,7 +40,7 @@ import {reactive, ref, watch} from 'vue'
               <h3 class="text-[35px] font-[900] leading-[60px] text-transparent" style="-webkit-text-stroke: 2px #fff">{{ item.title }}</h3>
             </div>
             <div class="btn-box absolute bottom-[42px] left-[135px] z-[2] rotate-[-13deg]">
-              <a :href="'https://api.whatsapp.com/send/?phone=' + mainSettings.phone + '&text=' + item.title" class="relative text-[18px] text-white leading-[18px] font-[500] bottom-0 left-0 bg-primary pt-[3px] pr-[40px] pb-[3px] pl-[40px] rounded-tl-[5px] rounded-bl-[25px] rounded-br-[25px] transition-all duration-500 ease-in-out">سجل لدينا</a>
+              <a :href="'https://api.whatsapp.com/send/?phone=' + mainSettings.phone + '&text=' + item.title" class="relative text-[18px] text-white leading-[18px] font-[500] bottom-0 left-0 bg-primary pt-[3px] pr-[40px] pb-[3px] pl-[40px] rounded-tl-[5px] rounded-bl-[25px] rounded-br-[25px] transition-all duration-500 ease-in-out">Anmeldung</a>
             </div>
           </div>
         </v-col>

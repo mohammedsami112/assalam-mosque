@@ -15,8 +15,8 @@
         </div>
         <div class="text-box ml-[10px]">
           <p class="text-primary-dark  font-[700] text-[24px]">
-            <span>كـــــن</span>
-            مســـــاهما
+            <span>Seien Sie ein </span>
+            Mitwirkender
           </p>
         </div>
       </div>

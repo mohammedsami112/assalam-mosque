@@ -10,12 +10,12 @@
         <v-col cols="12" lg="6">
           <div class="left text-center xl:!text-left">
             <div class="title mb-[28px] ">
-              <span class="text-[21px] font-[700] text-primary mb-[10px] leading-[24px] block">سجلوا أبنائكم لتعليم اللغة العربية </span>
-              <h2 class="text-primary-dark text-[50px] leading-[60px] font-[800] mt-[6px] block">ساهم معنا بالإلتحاق</h2>
+              <span class="text-[21px] font-[700] text-primary mb-[10px] leading-[24px] block">Melden Sie Ihre Kinder an, um Arabisch zu lernen</span>
+              <h2 class="text-primary-dark text-[50px] leading-[60px] font-[800] mt-[6px] block">Tragen Sie mit uns bei, indem Sie beitreten</h2>
             </div>
-            <p class="text-[16px]">في مدرستنا ستتعلم القران الكريم واللسان العربي الفصيح</p>
+            <p class="text-[16px]">In unserer Schule lernen Sie den Heiligen Koran und die klassische arabische Sprache</p>
             <router-link :to="{ path: '/', hash: '#features' }">
-              <v-btn size="large" flat color="primary2" class="mt-[70px]">اكتشف المزيد</v-btn>
+              <v-btn size="large" flat color="primary2" class="mt-[70px]">Finde mehr heraus</v-btn>
             </router-link>
 
           </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="counter absolute bottom-[-118px] left-[92px] h-[205px] w-[290px] z-[3] hidden xl:block">
               <h3 class="text-primary font-[700] text-[80px]">90+</h3>
-              <p>لدينا اكثر من تسعين  طالب من مختلف الجنسيات</p>
+              <p>Wir haben mehr als neunzig Studierende verschiedener Nationalitäten</p>
             </div>
             <div class="about-border absolute top-[3px] left-[-8px] w-[604px] h-[604px] border-2 border-solid border-[#ddd] rounded-[50%] z-[1] hidden xl:block"></div>
           </div>

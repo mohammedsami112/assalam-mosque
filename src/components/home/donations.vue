@@ -12,7 +12,7 @@
     <div class="background absolute top-0 left-0 right-0 h-[645px] bg-primary-dark z-[0]"></div>
     <v-container class="relative z-[1]">
       <div class="title text-center">
-        <span class="text-primary2 block text-[15px] xl:text-[24px] font-[700] leading-[24px] mb-[20px]">ســـاعد وتبـــــــرع</span>
+        <span class="text-primary2 block text-[15px] xl:text-[24px] font-[700] leading-[24px] mb-[20px]">Helfen Sie und spenden Sie</span>
         <h2 class="text-white block text-[26px] xl:text-[50px] leading-[60px] font-[900] mt-[6px] mb-[40px]">
           قال النبي صلى الله عليه وسلم
           <br>
