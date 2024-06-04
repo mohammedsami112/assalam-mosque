@@ -1,23 +1,11 @@
 <script setup>
-import PostsApi from '@/controllers/posts'
-import { useToast } from 'vue-toastification'
-import { useRouter } from 'vue-router'
-import { required, helpers, minLength } from '@vuelidate/validators'
+import PagesApi from '@/controllers/pages'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import useVuelidate from '@vuelidate/core'
-import GlobalApi from '@/controllers/global'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { helpers, required } from '@vuelidate/validators'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
-const categoriesList = ref([]);
-const statusesList = ref([
-  {
-    title: 'Publish',
-    value: 1
-  },
-  {
-    title: 'Draft',
-    value: 0
-  },
-])
 const isLoading = ref(false)
 const toast = useToast()
 const router = useRouter()
@@ -32,38 +20,32 @@ const editorConfig = ref({
   },
 })
 
-const handelThumbnail = (event) => {
-  inputs.thumbnail = event.target.files[0]
-}
+
 
 const inputs = reactive({
   title: null,
   body: null,
-  thumbnail: null,
-  status: null,
-  category: null,
 })
 
 const $externalResults = ref({})
 
 const rules = computed(() => ({
   title: { required: helpers.withMessage('Title Is Required', required) },
-  status: { required: helpers.withMessage('Status Is Required', required) },
-  category: { required: helpers.withMessage('Category Is Required', required) },
+
 }))
 
 const validate = useVuelidate(rules, inputs, {$externalResults})
 
-const createPost = () => {
+const createPage = () => {
   validate.value.$clearExternalResults()
   validate.value.$touch()
   if (!validate.value.$error) {
     $externalResults.value = {}
     isLoading.value = true
 
-    PostsApi.managePosts(inputs).then(response => {
+    PagesApi.managePages(inputs).then(response => {
       toast.success(response.message)
-      router.push({name: 'view-posts'})
+      router.push({name: 'view-pages'})
     }).catch(error => {
       $externalResults.value = error.response.data.data
       toast.error(error.response.data.message)
@@ -75,11 +57,6 @@ const createPost = () => {
 
 }
 
-onMounted(() => {
-  GlobalApi.getCategoriesList().then(response => {
-    categoriesList.value = response.data
-  })
-})
 
 </script>
 
@@ -88,14 +65,14 @@ onMounted(() => {
 
     <v-card-item>
       <v-card-title>
-        Add New Post
+        Add New Page
       </v-card-title>
     </v-card-item>
 
     <v-card-text>
-      <VForm @submit.prevent="createPost()">
+      <VForm @submit.prevent="createPage()">
         <VRow>
-          <VCol cols="12" lg='6'>
+          <VCol cols="12">
             <VTextField
               :disabled='isLoading'
               :error-messages='validate.title.$errors.map(e => e.$message)'
@@ -107,49 +84,6 @@ onMounted(() => {
               required
 
             />
-          </VCol>
-
-          <VCol cols='12' lg='6'>
-            <VSelect
-              clearable
-              :error-messages='validate.category.$errors.map(e => e.$message)'
-              @input="validate.category.$touch"
-              @blur="validate.category.$touch"
-              :disabled='isLoading'
-              v-model="inputs.category"
-              label="Category"
-              :items="categoriesList"
-              item-title='title'
-              item-value='id'
-              variant="outlined"
-            ></VSelect>
-          </VCol>
-
-          <VCol cols='12' lg='6'>
-            <VSelect
-              clearable
-              :error-messages='validate.status.$errors.map(e => e.$message)'
-              @input="validate.status.$touch"
-              @blur="validate.status.$touch"
-              :disabled='isLoading'
-              v-model="inputs.status"
-              label="Status"
-              :items="statusesList"
-              item-title='title'
-              item-value='value'
-              variant="outlined"
-            ></VSelect>
-          </VCol>
-
-          <VCol cols='12' lg='6'>
-            <VFileInput
-              clearable
-              :disabled='isLoading'
-              accept="image/*"
-              label="Thumbnail"
-              variant="outlined"
-              @change = "handelThumbnail"
-            ></VFileInput>
           </VCol>
 
           <VCol cols="12">
@@ -165,7 +99,7 @@ onMounted(() => {
               class='mt-4'
 
             >
-              Create Post
+              Create Page
             </VBtn>
           </VCol>
 

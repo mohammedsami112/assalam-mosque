@@ -29,7 +29,7 @@ export default {
 
   },
 
-  deletePage(inputs) {
+  deletePages(inputs) {
     return Api.post('/pages/delete', inputs).then(response => response.data)
   }
 
