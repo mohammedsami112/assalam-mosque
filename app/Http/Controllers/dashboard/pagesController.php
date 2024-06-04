@@ -33,34 +33,26 @@ class pagesController extends Controller
         return $this->success($page);
     }
 
-//    public function create(Request $request) {
-//
-//        $validate = Validator::make($request->all(), [
-//            'title' => 'required',
-//            'body' => 'required',
-//        ]);
-//
-//        if ($validate->fails()) {
-//            return $this->error('Validation Error', $validate->errors());
-//        }
-//
-//        if ($request->file('thumbnail')) {
-//            $thumbnail = Storage::disk('public')->put('thumbnails', $request->file('thumbnail'));
-//        }
-//
-//        $post = Post::create([
-//            'title' => $request->title,
-//            'content' => $request->body,
-//            'slug' => Str::slug($request->title),
-//            'thumbnail' => $thumbnail ? Storage::disk('public')->url($thumbnail) : null,
-//            'status' => $request->status,
-//            'category' => $request->category,
-//            'author' => Auth::user()->id
-//        ]);
-//
-//        return $this->success($post, 'Post Added Successfully');
-//
-//    }
+    public function create(Request $request) {
+
+        $validate = Validator::make($request->all(), [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return $this->error('Validation Error', $validate->errors());
+        }
+
+        $post = Page::create([
+            'title' => $request->title,
+            'content' => $request->body,
+            'slug' => Str::slug($request->title),
+        ]);
+
+        return $this->success($post, 'Page Added Successfully');
+
+    }
 
     public function update(Request $request) {
 
@@ -87,23 +79,23 @@ class pagesController extends Controller
 
     }
 
-//    public function delete(Request $request) {
-//        $validate = Validator::make($request->all(), [
-//            'item_ids' => 'required'
-//        ]);
-//
-//        if ($validate->fails()) {
-//            return $this->error('Validation Error', $validate->errors());
-//        }
-//
-//        $posts_ids = explode(',', $request->item_ids);
-//
-//        $posts = Post::whereIn('id', $posts_ids);
-//
-//        $posts->delete();
-//
-//        return $this->success(null, 'Posts Deleted Successfully');
-//
-//    }
+    public function delete(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'item_ids' => 'required'
+        ]);
+
+        if ($validate->fails()) {
+            return $this->error('Validation Error', $validate->errors());
+        }
+
+        $pages_ids = explode(',', $request->item_ids);
+
+        $pages = Page::whereIn('id', $pages_ids);
+
+        $pages->delete();
+
+        return $this->success(null, 'Pages Deleted Successfully');
+
+    }
 
 }

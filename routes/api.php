@@ -78,9 +78,9 @@ Route::group(['prefix' => 'dashboard'], function() {
 
     Route::group(['prefix' => 'pages', 'middleware' => 'auth:sanctum', 'controller' => pagesController::class], function() {
         Route::get('/', 'getPages');
-//        Route::post('/create', 'create');
+        Route::post('/create', 'create');
         Route::post('/update', 'update');
-//        Route::post('/delete', 'delete');
+        Route::post('/delete', 'delete');
         Route::get('/{pageId}', 'getPage');
     });
 
